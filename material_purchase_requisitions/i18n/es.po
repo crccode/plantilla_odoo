@@ -1,0 +1,1145 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* material_purchase_requisitions
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0-20200615\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-07-12 01:57+0000\n"
+"PO-Revision-Date: 2020-07-12 01:57+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: material_purchase_requisitions
+#: model:mail.template,body_html:material_purchase_requisitions.email_confirm_material_purchase_requistion
+msgid ""
+"\n"
+"            <![CDATA[\n"
+"            <div style=\"font-family: 'Lucida Grande', Ubuntu, Arial, Verdana, "
+"sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; \">\n"
+"                <p>Dear ${object.employee_id.parent_id.sudo().name},</p>\n"
+"                <p>Approve request for Purchase Requistion - ${object.name}.</p>\n"
+"                <p>Thank you,</p> \n"
+"                <br/>\n"
+"                <div style=\"width: 375px; margin: 0px; padding: 0px; background-"
+"color: #8E0000; border-top-left-radius: 5px 5px; border-top-right-radius: 5px 5px; "
+"background-repeat: repeat no-repeat;\">\n"
+"                    <h3 style=\"margin: 0px; padding: 2px 14px; font-size: 12px; "
+"color: #DDD;\">\n"
+"                        <strong style=\"text-transform:uppercase;\">${user."
+"company_id.name}</strong></h3>\n"
+"                </div>\n"
+"                <div style=\"width: 347px; margin: 0px; padding: 5px 14px; line-"
+"height: 16px; background-color: #F2F2F2;\">\n"
+"                    <span style=\"color: #222; margin-bottom: 5px; display: block; "
+"\">\n"
+"                        ${user.company_id.partner_id.sudo()."
+"with_context(show_address=True, html_format=True).name_get()[0][1] | safe}\n"
+"                    </span>\n"
+"                    % if user.company_id.phone:\n"
+"                        <div style=\"margin-top: 0px; margin-right: 0px; margin-"
+"bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-"
+"bottom: 0px; padding-left: 0px; \">\n"
+"                            Phone:&nbsp; ${object.company_id.phone}\n"
+"                        </div>\n"
+"                    % endif\n"
+"                    % if user.company_id.website:\n"
+"                        <div>\n"
+"                            Web :&nbsp;<a href=\"${object.company_id.website}\">"
+"${user.company_id.website}</a>\n"
+"                        </div>\n"
+"                    %endif\n"
+"                    <p></p>\n"
+"                </div>\n"
+"            </div>\n"
+"            \n"
+"            "
+msgstr ""
+"\n"
+"            <![CDATA[\n"
+"            <div style=\"font-family: 'Lucida Grande', Ubuntu, Arial, Verdana, "
+"sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; \">\n"
+"                <p>Estimado(a) ${object.employee_id.parent_id.sudo().name},</p>\n"
+"                <p>Aprobar Pedido de Materiales - ${object.name}.</p>\n"
+"                <p>Gracias,</p> \n"
+"                <br/>\n"
+"                <div style=\"width: 375px; margin: 0px; padding: 0px; background-"
+"color: #8E0000; border-top-left-radius: 5px 5px; border-top-right-radius: 5px 5px; "
+"background-repeat: repeat no-repeat;\">\n"
+"                    <h3 style=\"margin: 0px; padding: 2px 14px; font-size: 12px; "
+"color: #DDD;\">\n"
+"                        <strong style=\"text-transform:uppercase;\">${user."
+"company_id.name}</strong></h3>\n"
+"                </div>\n"
+"                <div style=\"width: 347px; margin: 0px; padding: 5px 14px; line-"
+"height: 16px; background-color: #F2F2F2;\">\n"
+"                    <span style=\"color: #222; margin-bottom: 5px; display: block; "
+"\">\n"
+"                        ${user.company_id.partner_id.sudo()."
+"with_context(show_address=True, html_format=True).name_get()[0][1] | safe}\n"
+"                    </span>\n"
+"                    % if user.company_id.phone:\n"
+"                        <div style=\"margin-top: 0px; margin-right: 0px; margin-"
+"bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-"
+"bottom: 0px; padding-left: 0px; \">\n"
+"                            Telefono:&nbsp; ${object.company_id.phone}\n"
+"                        </div>\n"
+"                    % endif\n"
+"                    % if user.company_id.website:\n"
+"                        <div>\n"
+"                            Web :&nbsp;<a href=\"${object.company_id.website}\">"
+"${user.company_id.website}</a>\n"
+"                        </div>\n"
+"                    %endif\n"
+"                    <p></p>\n"
+"                </div>\n"
+"            </div>\n"
+"            \n"
+"            "
+
+#. module: material_purchase_requisitions
+#: model:mail.template,body_html:material_purchase_requisitions.email_purchase_requisition
+msgid ""
+"\n"
+"            <![CDATA[\n"
+"            <div style=\"font-family: 'Lucida Grande', Ubuntu, Arial, Verdana, "
+"sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; \">\n"
+"                <p>Dear ${object.requisiton_responsible_id.name},</p>\n"
+"                <p>Approve request for Purchase Requistion - ${object.name}.</p> \n"
+"                <p>Thank you,</p> \n"
+"                <br/>\n"
+"                <div style=\"width: 375px; margin: 0px; padding: 0px; background-"
+"color: #8E0000; border-top-left-radius: 5px 5px; border-top-right-radius: 5px 5px; "
+"background-repeat: repeat no-repeat;\">\n"
+"                    <h3 style=\"margin: 0px; padding: 2px 14px; font-size: 12px; "
+"color: #DDD;\">\n"
+"                        <strong style=\"text-transform:uppercase;\">${user."
+"company_id.name}</strong></h3>\n"
+"                </div>\n"
+"                <div style=\"width: 347px; margin: 0px; padding: 5px 14px; line-"
+"height: 16px; background-color: #F2F2F2;\">\n"
+"                    <span style=\"color: #222; margin-bottom: 5px; display: block; "
+"\">\n"
+"                        ${user.company_id.partner_id.sudo()."
+"with_context(show_address=True, html_format=True).name_get()[0][1] | safe}\n"
+"                    </span>\n"
+"                    % if user.company_id.phone:\n"
+"                        <div style=\"margin-top: 0px; margin-right: 0px; margin-"
+"bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-"
+"bottom: 0px; padding-left: 0px; \">\n"
+"                            Phone:&nbsp; ${object.company_id.phone}\n"
+"                        </div>\n"
+"                    % endif\n"
+"                    % if user.company_id.website:\n"
+"                        <div>\n"
+"                            Web :&nbsp;<a href=\"${object.company_id.website}\">"
+"${user.company_id.website}</a>\n"
+"                        </div>\n"
+"                    %endif\n"
+"                    <p></p>\n"
+"                </div>\n"
+"            </div>\n"
+"            \n"
+"            "
+msgstr ""
+"\n"
+"            <![CDATA[\n"
+"            <div style=\"font-family: 'Lucida Grande', Ubuntu, Arial, Verdana, "
+"sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; \">\n"
+"                <p>Estimado(a) ${object.requisiton_responsible_id.name},</p>\n"
+"                <p>Aprobar Pedido de Materiales - ${object.name}.</p> \n"
+"                <p>Gracias,</p> \n"
+"                <br/>\n"
+"                <div style=\"width: 375px; margin: 0px; padding: 0px; background-"
+"color: #8E0000; border-top-left-radius: 5px 5px; border-top-right-radius: 5px 5px; "
+"background-repeat: repeat no-repeat;\">\n"
+"                    <h3 style=\"margin: 0px; padding: 2px 14px; font-size: 12px; "
+"color: #DDD;\">\n"
+"                        <strong style=\"text-transform:uppercase;\">${user."
+"company_id.name}</strong></h3>\n"
+"                </div>\n"
+"                <div style=\"width: 347px; margin: 0px; padding: 5px 14px; line-"
+"height: 16px; background-color: #F2F2F2;\">\n"
+"                    <span style=\"color: #222; margin-bottom: 5px; display: block; "
+"\">\n"
+"                        ${user.company_id.partner_id.sudo()."
+"with_context(show_address=True, html_format=True).name_get()[0][1] | safe}\n"
+"                    </span>\n"
+"                    % if user.company_id.phone:\n"
+"                        <div style=\"margin-top: 0px; margin-right: 0px; margin-"
+"bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-"
+"bottom: 0px; padding-left: 0px; \">\n"
+"                            Teléfono:&nbsp; ${object.company_id.phone}\n"
+"                        </div>\n"
+"                    % endif\n"
+"                    % if user.company_id.website:\n"
+"                        <div>\n"
+"                            Web :&nbsp;<a href=\"${object.company_id.website}\">"
+"${user.company_id.website}</a>\n"
+"                        </div>\n"
+"                    %endif\n"
+"                    <p></p>\n"
+"                </div>\n"
+"            </div>\n"
+"            \n"
+"            "
+
+#. module: material_purchase_requisitions
+#: model:mail.template,body_html:material_purchase_requisitions.email_purchase_requisition_iruser_custom
+msgid ""
+"\n"
+"            <p>Dear ${object.employee_id.name},</p>\n"
+"            <p>Your Purchase Requistion - ${object.name} is approved by department."
+"</p> \n"
+"            <p>Thank You,</p>\n"
+"            <br/>\n"
+"            <div style=\"width: 375px; margin: 0px; padding: 0px; background-"
+"color: #8E0000; border-top-left-radius: 5px 5px; border-top-right-radius: 5px 5px; "
+"background-repeat: repeat no-repeat;\">\n"
+"                    <h3 style=\"margin: 0px; padding: 2px 14px; font-size: 12px; "
+"color: #DDD;\">\n"
+"                        <strong style=\"text-transform:uppercase;\">${user."
+"company_id.name}</strong></h3>\n"
+"                </div>\n"
+"                <div style=\"width: 347px; margin: 0px; padding: 5px 14px; line-"
+"height: 16px; background-color: #F2F2F2;\">\n"
+"                    <span style=\"color: #222; margin-bottom: 5px; display: block; "
+"\">\n"
+"                        ${user.company_id.partner_id.sudo()."
+"with_context(show_address=True, html_format=True).name_get()[0][1] | safe}\n"
+"                    </span>\n"
+"                    % if user.company_id.phone:\n"
+"                        <div style=\"margin-top: 0px; margin-right: 0px; margin-"
+"bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-"
+"bottom: 0px; padding-left: 0px; \">\n"
+"                            Phone:&nbsp; ${object.company_id.phone}\n"
+"                        </div>\n"
+"                    % endif\n"
+"                    % if user.company_id.website:\n"
+"                        <div>\n"
+"                            Web :&nbsp;<a href=\"${object.company_id.website}\">"
+"${user.company_id.website}</a>\n"
+"                        </div>\n"
+"                    %endif\n"
+"                    <p></p>\n"
+"                </div>\n"
+"            </div>\n"
+"            "
+msgstr ""
+"\n"
+"            <p>Estimado(a) ${object.employee_id.name},</p>\n"
+"            <p>Su Pedido de Materiales - ${object.name} fue aprobado.</p> \n"
+"            <p>Gracias,</p>\n"
+"            <br/>\n"
+"            <div style=\"width: 375px; margin: 0px; padding: 0px; background-"
+"color: #8E0000; border-top-left-radius: 5px 5px; border-top-right-radius: 5px 5px; "
+"background-repeat: repeat no-repeat;\">\n"
+"                    <h3 style=\"margin: 0px; padding: 2px 14px; font-size: 12px; "
+"color: #DDD;\">\n"
+"                        <strong style=\"text-transform:uppercase;\">${user."
+"company_id.name}</strong></h3>\n"
+"                </div>\n"
+"                <div style=\"width: 347px; margin: 0px; padding: 5px 14px; line-"
+"height: 16px; background-color: #F2F2F2;\">\n"
+"                    <span style=\"color: #222; margin-bottom: 5px; display: block; "
+"\">\n"
+"                        ${user.company_id.partner_id.sudo()."
+"with_context(show_address=True, html_format=True).name_get()[0][1] | safe}\n"
+"                    </span>\n"
+"                    % if user.company_id.phone:\n"
+"                        <div style=\"margin-top: 0px; margin-right: 0px; margin-"
+"bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-"
+"bottom: 0px; padding-left: 0px; \">\n"
+"                            Teléfono:&nbsp; ${object.company_id.phone}\n"
+"                        </div>\n"
+"                    % endif\n"
+"                    % if user.company_id.website:\n"
+"                        <div>\n"
+"                            Web :&nbsp;<a href=\"${object.company_id.website}\">"
+"${user.company_id.website}</a>\n"
+"                        </div>\n"
+"                    %endif\n"
+"                    <p></p>\n"
+"                </div>\n"
+"            </div>\n"
+"            "
+
+#. module: material_purchase_requisitions
+#: model_terms:ir.ui.view,arch_db:material_purchase_requisitions.purchase_requisition
+msgid "<strong>Analytic Account</strong>"
+msgstr "<strong>Cuenta Analítica</strong>"
+
+#. module: material_purchase_requisitions
+#: model_terms:ir.ui.view,arch_db:material_purchase_requisitions.purchase_requisition
+msgid "<strong>Approved By </strong>"
+msgstr "<strong>Aprobado por </strong>"
+
+#. module: material_purchase_requisitions
+#: model_terms:ir.ui.view,arch_db:material_purchase_requisitions.purchase_requisition
+msgid "<strong>Approved Date </strong>"
+msgstr "<strong>Fecha de Aprobación </strong>"
+
+#. module: material_purchase_requisitions
+#: model_terms:ir.ui.view,arch_db:material_purchase_requisitions.purchase_requisition
+msgid "<strong>Approver Signature:____________________</strong>"
+msgstr "<strong>Firma Aprobación:____________________</strong>"
+
+#. module: material_purchase_requisitions
+#: model_terms:ir.ui.view,arch_db:material_purchase_requisitions.purchase_requisition
+msgid "<strong>Company</strong>"
+msgstr "<strong>Compañia</strong>"
+
+#. module: material_purchase_requisitions
+#: model_terms:ir.ui.view,arch_db:material_purchase_requisitions.purchase_requisition
+msgid "<strong>Confirmed By</strong>"
+msgstr "<strong>Confirmado por</strong>"
+
+#. module: material_purchase_requisitions
+#: model_terms:ir.ui.view,arch_db:material_purchase_requisitions.purchase_requisition
+msgid "<strong>Rejected Date</strong>"
+msgstr "<strong>Fecha de Rechazo</strong>"
+
+#. module: material_purchase_requisitions
+#: model_terms:ir.ui.view,arch_db:material_purchase_requisitions.purchase_requisition
+msgid "<strong>Requisition Action</strong>"
+msgstr "<strong>Acción de Pedido</strong>"
+
+#. module: material_purchase_requisitions
+#: model_terms:ir.ui.view,arch_db:material_purchase_requisitions.purchase_requisition
+msgid "<strong>Requisition Date</strong>"
+msgstr "<strong>Fecha de Pedido</strong>"
+
+#. module: material_purchase_requisitions
+#: model_terms:ir.ui.view,arch_db:material_purchase_requisitions.purchase_requisition
+msgid "<strong>Requisition Deadline</strong>"
+msgstr "<strong>Fecha Límite de Pedido</strong>"
+
+#. module: material_purchase_requisitions
+#: model_terms:ir.ui.view,arch_db:material_purchase_requisitions.purchase_requisition
+msgid "<strong>Requisition Responsible</strong>"
+msgstr "strong>Responsable del Pedido</strong>"
+
+#. module: material_purchase_requisitions
+#: model_terms:ir.ui.view,arch_db:material_purchase_requisitions.purchase_requisition
+msgid "<strong>Source Location</strong>"
+msgstr "<strong>Ubicación de Origen</strong>"
+
+#. module: material_purchase_requisitions
+#: model_terms:ir.ui.view,arch_db:material_purchase_requisitions.purchase_requisition
+msgid "<strong>Unit of Measure</strong>"
+msgstr "<strong>Unidad de Medida</strong>"
+
+#. module: material_purchase_requisitions
+#: model_terms:ir.ui.view,arch_db:material_purchase_requisitions.purchase_requisition
+msgid "<strong>Vendors</strong>"
+msgstr "<strong>Proveedores</strong>"
+
+#. module: material_purchase_requisitions
+#: model:ir.model.fields,field_description:material_purchase_requisitions.field_material_purchase_requisition__access_warning
+msgid "Access warning"
+msgstr "Adevertencia de Acceso"
+
+#. module: material_purchase_requisitions
+#: model:ir.model.fields,field_description:material_purchase_requisitions.field_material_purchase_requisition__message_needaction
+msgid "Action Needed"
+msgstr "Accion Necesaria"
+
+#. module: material_purchase_requisitions
+#: model:ir.model.fields,field_description:material_purchase_requisitions.field_material_purchase_requisition__activity_ids
+msgid "Activities"
+msgstr "Actividades"
+
+#. module: material_purchase_requisitions
+#: model:ir.model.fields,field_description:material_purchase_requisitions.field_material_purchase_requisition__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr "Decoración de Excepción de Actividad"
+
+#. module: material_purchase_requisitions
+#: model:ir.model.fields,field_description:material_purchase_requisitions.field_material_purchase_requisition__activity_state
+msgid "Activity State"
+msgstr "Estado de Actividad"
+
+#. module: material_purchase_requisitions
+#: model_terms:ir.ui.view,arch_db:material_purchase_requisitions.material_purchase_requisition_form_view
+msgid "Add Reason for Internal Requistion ...."
+msgstr "Agregar Razón para Pedido Interno..."
+
+#. module: material_purchase_requisitions
+#: model:ir.model.fields,field_description:material_purchase_requisitions.field_material_purchase_requisition__analytic_account_id
+msgid "Analytic Account"
+msgstr "Cuenta Analítica"
+
+#. module: material_purchase_requisitions
+#: model:mail.template,subject:material_purchase_requisitions.email_purchase_requisition
+msgid "Approval Request for Purchase Requisition to Purchase User - ${object.name}"
+msgstr "Solicitud de Aprobación para Pedido de Materiales a Usuario - ${object.name}"
+
+#. module: material_purchase_requisitions
+#: model_terms:ir.ui.view,arch_db:material_purchase_requisitions.material_purchase_requisition_form_view
+msgid "Approve"
+msgstr "Aprobación"
+
+#. module: material_purchase_requisitions
+#: model_terms:ir.ui.view,arch_db:material_purchase_requisitions.material_purchase_requisition_search_view
+msgid "Approve By"
+msgstr "Aprobado Por"
+
+#. module: material_purchase_requisitions
+#: model:ir.model.fields,field_description:material_purchase_requisitions.field_material_purchase_requisition__userrapp_date
+msgid "Approved Date"
+msgstr "Fecha de Aprobación"
+
+#. module: material_purchase_requisitions
+#: model:ir.model.fields,field_description:material_purchase_requisitions.field_material_purchase_requisition__approve_employee_id
+msgid "Approved by"
+msgstr "Aprobado Por"
+
+#. module: material_purchase_requisitions
+#: model:ir.model.fields.selection,name:material_purchase_requisitions.selection__material_purchase_requisition__state__dept_confirm
+msgid "Aprobacion Departmento"
+msgstr "Aprobacion Departmento"
+
+#. module: material_purchase_requisitions
+#: model:ir.model.fields.selection,name:material_purchase_requisitions.selection__material_purchase_requisition__state__approve
+msgid "Aprobado"
+msgstr "Aprobado"
+
+#. module: material_purchase_requisitions
+#: model:ir.model.fields,field_description:material_purchase_requisitions.field_material_purchase_requisition__message_attachment_count
+msgid "Attachment Count"
+msgstr "Cuenta de Anexos"
+
+#. module: material_purchase_requisitions
+#: model_terms:ir.ui.view,arch_db:material_purchase_requisitions.material_purchase_requisition_form_view
+msgid "Cancel"
+msgstr "Cancelado"
+
+#. module: material_purchase_requisitions
+#: model:ir.model.fields.selection,name:material_purchase_requisitions.selection__material_purchase_requisition__state__cancel
+msgid "Cancelado"
+msgstr "Cancelado"
+
+#. module: material_purchase_requisitions
+#: model:ir.model.fields,field_description:material_purchase_requisitions.field_material_purchase_requisition__company_id
+#: model_terms:ir.ui.view,arch_db:material_purchase_requisitions.material_purchase_requisition_search_view
+msgid "Company"
+msgstr "Compañia"
+
+#. module: material_purchase_requisitions
+#: model_terms:ir.ui.view,arch_db:material_purchase_requisitions.material_purchase_requisition_form_view
+msgid "Confirm"
+msgstr "Confirmado"
+
+#. module: material_purchase_requisitions
+#: model:ir.model.fields,field_description:material_purchase_requisitions.field_material_purchase_requisition__confirm_date
+msgid "Confirmed Date"
+msgstr "Fecha de Confirmación"
+
+#. module: material_purchase_requisitions
+#: model:ir.model.fields,field_description:material_purchase_requisitions.field_material_purchase_requisition__employee_confirm_id
+msgid "Confirmed by"
+msgstr "Confirmado por"
+
+#. module: material_purchase_requisitions
+#: model_terms:ir.actions.act_window,help:material_purchase_requisitions.action_material_purchase_requisition
+msgid "Crear un nuevo documento"
+msgstr "Crear un nuevo documento"
+
+#. module: material_purchase_requisitions
+#: model_terms:ir.ui.view,arch_db:material_purchase_requisitions.material_purchase_requisition_form_view
+msgid "Create Picking and PO"
+msgstr "Crear Traslado y Orden de Compra"
+
+#. module: material_purchase_requisitions
+#: model:ir.model.fields,field_description:material_purchase_requisitions.field_material_purchase_requisition__create_uid
+#: model:ir.model.fields,field_description:material_purchase_requisitions.field_material_purchase_requisition_line__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: material_purchase_requisitions
+#: model:ir.model.fields,field_description:material_purchase_requisitions.field_material_purchase_requisition__create_date
+#: model:ir.model.fields,field_description:material_purchase_requisitions.field_material_purchase_requisition_line__create_date
+msgid "Created on"
+msgstr "Fecha de Creación"
+
+#. module: material_purchase_requisitions
+#: model:ir.model.fields,help:material_purchase_requisitions.field_material_purchase_requisition__access_url
+msgid "Customer Portal URL"
+msgstr "Sitio Web del Cliente"
+
+#. module: material_purchase_requisitions
+#: model:ir.model.fields,field_description:material_purchase_requisitions.field_material_purchase_requisition__date_done
+#: model_terms:ir.ui.view,arch_db:material_purchase_requisitions.material_purchase_requisition_search_view
+msgid "Date Done"
+msgstr "Completado en Fecha"
+
+#. module: material_purchase_requisitions
+#: model:ir.model.fields,help:material_purchase_requisitions.field_material_purchase_requisition__date_done
+msgid "Date of Completion of Purchase Requisition"
+msgstr "Orden de Compra Completada en Fecha"
+
+#. module: material_purchase_requisitions
+#: model_terms:ir.ui.view,arch_db:material_purchase_requisitions.material_purchase_requisition_search_view
+msgid "Delivery Picking"
+msgstr "Orden de Traslado"
+
+#. module: material_purchase_requisitions
+#: model:ir.model.fields,field_description:material_purchase_requisitions.field_material_purchase_requisition__department_id
+#: model_terms:ir.ui.view,arch_db:material_purchase_requisitions.material_purchase_requisition_search_view
+msgid "Department"
+msgstr "Departamento"
+
+#. module: material_purchase_requisitions
+#: model:ir.model.fields,field_description:material_purchase_requisitions.field_material_purchase_requisition__managerapp_date
+msgid "Department Approval Date"
+msgstr "Fecha de Aprobación de Departamento"
+
+#. module: material_purchase_requisitions
+#: model:mail.template,subject:material_purchase_requisitions.email_purchase_requisition_iruser_custom
+msgid "Department Approval Purchase Requisition - ${object.name}"
+msgstr "Aprobación Departamento de Orden de Compra - ${object.name}"
+
+#. module: material_purchase_requisitions
+#: model_terms:ir.ui.view,arch_db:material_purchase_requisitions.material_purchase_requisition_form_view
+msgid "Department Approve"
+msgstr "Aprobación de Departamento"
+
+#. module: material_purchase_requisitions
+#: model:ir.model.fields,field_description:material_purchase_requisitions.field_material_purchase_requisition__approve_manager_id
+#: model_terms:ir.ui.view,arch_db:material_purchase_requisitions.material_purchase_requisition_search_view
+msgid "Department Manager"
+msgstr "Jefe de Departamento"
+
+#. module: material_purchase_requisitions
+#: model:ir.model.fields,field_description:material_purchase_requisitions.field_material_purchase_requisition__reject_manager_id
+msgid "Department Manager Reject"
+msgstr "Rechazo de Jefe de Departamento"
+
+#. module: material_purchase_requisitions
+#: model:ir.model.fields,field_description:material_purchase_requisitions.field_material_purchase_requisition__manareject_date
+msgid "Department Manager Reject Date"
+msgstr "Fecha de Rechazo de Jefe de Departamento"
+
+#. module: material_purchase_requisitions
+#: model:ir.model.fields,field_description:material_purchase_requisitions.field_material_purchase_requisition_line__description
+msgid "Description"
+msgstr "Descripción"
+
+#. module: material_purchase_requisitions
+#: model:ir.model.fields,field_description:material_purchase_requisitions.field_hr_department__dest_location_id
+#: model:ir.model.fields,field_description:material_purchase_requisitions.field_hr_employee__dest_location_id
+#: model:ir.model.fields,field_description:material_purchase_requisitions.field_material_purchase_requisition__dest_location_id
+#: model_terms:ir.ui.view,arch_db:material_purchase_requisitions.material_purchase_requisition_search_view
+msgid "Destination Location"
+msgstr "Ubicación de Destino"
+
+#. module: material_purchase_requisitions
+#: model:ir.model.fields,field_description:material_purchase_requisitions.field_material_purchase_requisition__display_name
+#: model:ir.model.fields,field_description:material_purchase_requisitions.field_material_purchase_requisition_line__display_name
+msgid "Display Name"
+msgstr "Nombre a mostrar"
+
+#. module: material_purchase_requisitions
+#: model:ir.model,name:material_purchase_requisitions.model_hr_employee
+#: model:ir.model.fields,field_description:material_purchase_requisitions.field_material_purchase_requisition__employee_id
+#: model_terms:ir.ui.view,arch_db:material_purchase_requisitions.material_purchase_requisition_search_view
+msgid "Employee"
+msgstr "Empleado"
+
+#. module: material_purchase_requisitions
+#: model:ir.model.fields.selection,name:material_purchase_requisitions.selection__material_purchase_requisition__state__ir_approve
+msgid "Esperando Aprobacion"
+msgstr "Esperando Aprobación"
+
+#. module: material_purchase_requisitions
+#: model:ir.model.fields,field_description:material_purchase_requisitions.field_material_purchase_requisition__message_follower_ids
+msgid "Followers"
+msgstr "Seguidores"
+
+#. module: material_purchase_requisitions
+#: model:ir.model.fields,field_description:material_purchase_requisitions.field_material_purchase_requisition__message_channel_ids
+msgid "Followers (Channels)"
+msgstr "Seguidores (Canales)"
+
+#. module: material_purchase_requisitions
+#: model:ir.model.fields,field_description:material_purchase_requisitions.field_material_purchase_requisition__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "Seguidores (Contacto)"
+
+#. module: material_purchase_requisitions
+#: model_terms:ir.ui.view,arch_db:material_purchase_requisitions.material_purchase_requisition_search_view
+msgid "Group By"
+msgstr "Agrupar Por"
+
+#. module: material_purchase_requisitions
+#: model:ir.model,name:material_purchase_requisitions.model_hr_department
+msgid "HR Department"
+msgstr "Departamento RRHH"
+
+#. module: material_purchase_requisitions
+#: model:ir.model.fields,field_description:material_purchase_requisitions.field_material_purchase_requisition__id
+#: model:ir.model.fields,field_description:material_purchase_requisitions.field_material_purchase_requisition_line__id
+msgid "ID"
+msgstr "ID"
+
+#. module: material_purchase_requisitions
+#: model:ir.model.fields,field_description:material_purchase_requisitions.field_material_purchase_requisition__activity_exception_icon
+msgid "Icon"
+msgstr "Icono"
+
+#. module: material_purchase_requisitions
+#: model:ir.model.fields,help:material_purchase_requisitions.field_material_purchase_requisition__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr "Icono para indicar excepción de actividad."
+
+#. module: material_purchase_requisitions
+#: model:ir.model.fields,help:material_purchase_requisitions.field_material_purchase_requisition__message_needaction
+#: model:ir.model.fields,help:material_purchase_requisitions.field_material_purchase_requisition__message_unread
+msgid "If checked, new messages require your attention."
+msgstr "Si está tickeado, existen nuevos mensajes que requieren su atención."
+
+#. module: material_purchase_requisitions
+#: model:ir.model.fields,help:material_purchase_requisitions.field_material_purchase_requisition__message_has_error
+#: model:ir.model.fields,help:material_purchase_requisitions.field_material_purchase_requisition__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr "Si está tickeado, existen mensajes con error de envío."
+
+#. module: material_purchase_requisitions
+#: model:ir.model.fields,field_description:material_purchase_requisitions.field_material_purchase_requisition__delivery_picking_id
+#: model:ir.model.fields.selection,name:material_purchase_requisitions.selection__material_purchase_requisition_line__requisition_type__internal
+#: model_terms:ir.ui.view,arch_db:material_purchase_requisitions.material_purchase_requisition_form_view
+msgid "Internal Picking"
+msgstr "Traslado Interno"
+
+#. module: material_purchase_requisitions
+#: model:ir.model.fields,field_description:material_purchase_requisitions.field_material_purchase_requisition__message_is_follower
+msgid "Is Follower"
+msgstr "Es Seguidor"
+
+#. module: material_purchase_requisitions
+#: model:ir.model.fields,field_description:material_purchase_requisitions.field_material_purchase_requisition____last_update
+#: model:ir.model.fields,field_description:material_purchase_requisitions.field_material_purchase_requisition_line____last_update
+msgid "Last Modified on"
+msgstr "Fecha de Ultima Modificación"
+
+#. module: material_purchase_requisitions
+#: model:ir.model.fields,field_description:material_purchase_requisitions.field_material_purchase_requisition__write_uid
+#: model:ir.model.fields,field_description:material_purchase_requisitions.field_material_purchase_requisition_line__write_uid
+msgid "Last Updated by"
+msgstr "Usuario de Última Actualización"
+
+#. module: material_purchase_requisitions
+#: model:ir.model.fields,field_description:material_purchase_requisitions.field_material_purchase_requisition__write_date
+#: model:ir.model.fields,field_description:material_purchase_requisitions.field_material_purchase_requisition_line__write_date
+msgid "Last Updated on"
+msgstr "Usuario de Ultima Actualización"
+
+#. module: material_purchase_requisitions
+#: model:ir.model.fields,help:material_purchase_requisitions.field_material_purchase_requisition__date_end
+msgid "Last date for the product to be needed"
+msgstr "Fecha Límite de Necesidad del Producto"
+
+#. module: material_purchase_requisitions
+#: model_terms:ir.ui.view,arch_db:material_purchase_requisitions.material_purchase_requisition_search_view
+msgid "Location"
+msgstr "Ubicación"
+
+#. module: material_purchase_requisitions
+#: model:ir.model.fields,field_description:material_purchase_requisitions.field_material_purchase_requisition__message_main_attachment_id
+msgid "Main Attachment"
+msgstr "Anexo Principal"
+
+#. module: material_purchase_requisitions
+#: model_terms:ir.ui.view,arch_db:material_purchase_requisitions.material_purchase_requisition_search_view
+msgid "Manager Approve Date"
+msgstr "Fecha de Aprobación del Gerente"
+
+#. module: material_purchase_requisitions
+#: model:ir.model,name:material_purchase_requisitions.model_material_purchase_requisition_line
+msgid "Material Purchase Requisition Lines"
+msgstr "Linea de Material de Pedido de Compra"
+
+#. module: material_purchase_requisitions
+#: model:res.groups,name:material_purchase_requisitions.group_purchase_requisition_manager
+msgid "Material Purchase Requisition Manager"
+msgstr "Jefe de Pedido de Compra de Material"
+
+#. module: material_purchase_requisitions
+#: model:res.groups,name:material_purchase_requisitions.group_purchase_requisition_user
+msgid "Material Purchase Requisition User"
+msgstr "Usuario de Pedido de Compra de Materiales"
+
+#. module: material_purchase_requisitions
+#: model:res.groups,name:material_purchase_requisitions.group_purchase_requisition_department
+msgid "Material Purchase Requistion Department Manager"
+msgstr "Jefe de Departamento de Pedido de Materiales"
+
+#. module: material_purchase_requisitions
+#: model:ir.model.fields,field_description:material_purchase_requisitions.field_material_purchase_requisition__message_has_error
+msgid "Message Delivery error"
+msgstr "Error de Envío Mensaje"
+
+#. module: material_purchase_requisitions
+#: model:ir.model.fields,field_description:material_purchase_requisitions.field_material_purchase_requisition__message_ids
+msgid "Messages"
+msgstr "Mensajes"
+
+#. module: material_purchase_requisitions
+#: model:ir.model.fields,field_description:material_purchase_requisitions.field_material_purchase_requisition__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr "Fecha Límite de Próxima Actividad"
+
+#. module: material_purchase_requisitions
+#: model:ir.model.fields,field_description:material_purchase_requisitions.field_material_purchase_requisition__activity_summary
+msgid "Next Activity Summary"
+msgstr "Resumen de Próxima Actividad"
+
+#. module: material_purchase_requisitions
+#: model:ir.model.fields,field_description:material_purchase_requisitions.field_material_purchase_requisition__activity_type_id
+msgid "Next Activity Type"
+msgstr "Tipo de Próxima Actividad"
+
+#. module: material_purchase_requisitions
+#: model:ir.model.fields,field_description:material_purchase_requisitions.field_material_purchase_requisition__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "Error en Envío de SMS"
+
+#. module: material_purchase_requisitions
+#: model:ir.model.fields,field_description:material_purchase_requisitions.field_material_purchase_requisition__access_token
+msgid "Security Token"
+msgstr "Token de Seguridad"
+
+#. module: material_purchase_requisitions
+#: model:ir.model.fields,field_description:material_purchase_requisitions.field_material_purchase_requisition_line__requisition_id
+#: model:ir.model.fields,field_description:material_purchase_requisitions.field_purchase_order__custom_requisition_id
+#: model:ir.ui.menu,name:material_purchase_requisitions.menu_purchase_requisition
+msgid "Requisitions"
+msgstr "Pedidos de Materiales"
+
+#. module: material_purchase_requisitions
+#: model:ir.model.fields,field_description:material_purchase_requisitions.field_purchase_order_line__custom_requisition_line_id
+#: model:ir.model.fields,field_description:material_purchase_requisitions.field_stock_move__custom_requisition_line_id
+msgid "Requisitions Line"
+msgstr "Linea de Pedido"
+
+#. module: material_purchase_requisitions
+#: model_terms:ir.ui.view,arch_db:material_purchase_requisitions.material_purchase_requisition_form_view
+msgid "Requisitions Lines"
+msgstr "Linea de Pedido"
+
+#. module: material_purchase_requisitions
+#: model_terms:ir.ui.view,arch_db:material_purchase_requisitions.material_purchase_requisition_form_view
+msgid "Reset to Draft"
+msgstr "Volver a Borrador"
+
+#. module: material_purchase_requisitions
+#: model:ir.model.fields,field_description:material_purchase_requisitions.field_material_purchase_requisition__activity_user_id
+msgid "Responsible User"
+msgstr "Usuario Responsable"
+
+
+#. module: material_purchase_requisitions
+#: model:ir.model.fields,field_description:material_purchase_requisitions.field_material_purchase_requisition__access_url
+msgid "Portal Access URL"
+msgstr "Sitio Web de Acceso al portal"
+
+#. module: material_purchase_requisitions
+#: model_terms:ir.ui.view,arch_db:material_purchase_requisitions.material_purchase_requisition_form_view
+msgid "Reject"
+msgstr "Rechazado"
+
+#. module: material_purchase_requisitions
+#: model:ir.model.fields,field_description:material_purchase_requisitions.field_material_purchase_requisition__userreject_date
+msgid "Rejected Date"
+msgstr "Fecha de rechazo"
+
+#. module: material_purchase_requisitions
+#: model:ir.model.fields,field_description:material_purchase_requisitions.field_material_purchase_requisition__reject_employee_id
+msgid "Rejected by"
+msgstr "Rechazado por"
+
+#. module: material_purchase_requisitions
+#: model_terms:ir.ui.view,arch_db:material_purchase_requisitions.material_purchase_requisition_search_view
+msgid "Reqisition Date"
+msgstr "Fecha de Pedido"
+
+#. module: material_purchase_requisitions
+#: model_terms:ir.ui.view,arch_db:material_purchase_requisitions.material_purchase_requisition_search_view
+msgid "Reqisition Dedline"
+msgstr "Fecha Límite de Pedido"
+
+#. module: material_purchase_requisitions
+#: model:mail.template,subject:material_purchase_requisitions.email_confirm_material_purchase_requistion
+msgid "Request for Material Purchase Requisition - ${object.name}"
+msgstr ""
+
+#. module: material_purchase_requisitions
+#: model:ir.model.fields,field_description:material_purchase_requisitions.field_material_purchase_requisition_line__requisition_type
+msgid "Requisition Action"
+msgstr "Acción de Pedido"
+
+#. module: material_purchase_requisitions
+#: model:ir.model.fields,field_description:material_purchase_requisitions.field_material_purchase_requisition__request_date
+msgid "Requisition Date"
+msgstr "Fecha de Pedido"
+
+#. module: material_purchase_requisitions
+#: model:ir.model.fields,field_description:material_purchase_requisitions.field_material_purchase_requisition__date_end
+msgid "Requisition Deadline"
+msgstr "Fecha Límite de Pedido"
+
+#. module: material_purchase_requisitions
+#: model_terms:ir.ui.view,arch_db:material_purchase_requisitions.purchase_requisition
+msgid "Requisition Lines"
+msgstr "Lineas de Pedido"
+
+#. module: material_purchase_requisitions
+#: model:ir.model.fields,field_description:material_purchase_requisitions.field_material_purchase_requisition__requisiton_responsible_id
+msgid "Requisition Responsible"
+msgstr "Responsable de Pedido"
+
+#. module: material_purchase_requisitions
+#: model:ir.model.fields.selection,name:material_purchase_requisitions.selection__material_purchase_requisition__state__draft
+msgid "Nuevo"
+msgstr "Nuevo"
+
+#. module: material_purchase_requisitions
+#: model:ir.model.fields,field_description:material_purchase_requisitions.field_material_purchase_requisition__name
+msgid "Number"
+msgstr "Número"
+
+#. module: material_purchase_requisitions
+#: model:ir.model.fields,field_description:material_purchase_requisitions.field_material_purchase_requisition__message_needaction_counter
+msgid "Number of Actions"
+msgstr "Número de Acciones"
+
+#. module: material_purchase_requisitions
+#: model:ir.model.fields,field_description:material_purchase_requisitions.field_material_purchase_requisition__message_has_error_counter
+msgid "Number of errors"
+msgstr "Número de Errores"
+
+#. module: material_purchase_requisitions
+#: model:ir.model.fields,help:material_purchase_requisitions.field_material_purchase_requisition__message_needaction_counter
+msgid "Number of messages which requires an action"
+msgstr "Número de Mensajes que requieren acción"
+
+#. module: material_purchase_requisitions
+#: model:ir.model.fields,help:material_purchase_requisitions.field_material_purchase_requisition__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "Número de mensajes con error de envío"
+
+#. module: material_purchase_requisitions
+#: model:ir.model.fields,help:material_purchase_requisitions.field_material_purchase_requisition__message_unread_counter
+msgid "Number of unread messages"
+msgstr "Número de Mensajes sin leer"
+
+#. module: material_purchase_requisitions
+#: model:ir.model.fields.selection,name:material_purchase_requisitions.selection__material_purchase_requisition__state__stock
+msgid "Orden de Compra creada"
+msgstr "Orden de Compra creada"
+
+#. module: material_purchase_requisitions
+#: model_terms:ir.ui.view,arch_db:material_purchase_requisitions.material_purchase_requisition_form_view
+#: model_terms:ir.ui.view,arch_db:material_purchase_requisitions.purchase_requisition
+msgid "Other Information"
+msgstr "Otra Información"
+
+#. module: material_purchase_requisitions
+#: model_terms:ir.ui.view,arch_db:material_purchase_requisitions.material_purchase_requisition_form_view
+#: model_terms:ir.ui.view,arch_db:material_purchase_requisitions.purchase_requisition
+msgid "Picking Details"
+msgstr "Detalles de Traslado"
+
+#. module: material_purchase_requisitions
+#: model:ir.model.fields,field_description:material_purchase_requisitions.field_material_purchase_requisition__custom_picking_type_id
+msgid "Picking Type"
+msgstr "Tipo de Traslado"
+
+
+#. module: material_purchase_requisitions
+#: model:ir.model.fields.selection,name:material_purchase_requisitions.selection__material_purchase_requisition__state__draft
+msgid "Nuevo"
+msgstr "Nuevo"
+
+#. module: material_purchase_requisitions
+#: model:ir.model.fields,field_description:material_purchase_requisitions.field_material_purchase_requisition__name
+msgid "Number"
+msgstr "Número"
+
+#. module: material_purchase_requisitions
+#: model:ir.model.fields,field_description:material_purchase_requisitions.field_material_purchase_requisition__message_needaction_counter
+msgid "Number of Actions"
+msgstr "Número de Acciones"
+
+#. module: material_purchase_requisitions
+#: model:ir.model.fields,field_description:material_purchase_requisitions.field_material_purchase_requisition__message_has_error_counter
+msgid "Number of errors"
+msgstr "Número de Errores"
+
+#. module: material_purchase_requisitions
+#: model:ir.model.fields,help:material_purchase_requisitions.field_material_purchase_requisition__message_needaction_counter
+msgid "Number of messages which requires an action"
+msgstr "Número de Mensajes que requieren acción"
+
+#. module: material_purchase_requisitions
+#: model:ir.model.fields,help:material_purchase_requisitions.field_material_purchase_requisition__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "Número de mensajes con error de envío"
+
+#. module: material_purchase_requisitions
+#: model:ir.model.fields,help:material_purchase_requisitions.field_material_purchase_requisition__message_unread_counter
+msgid "Number of unread messages"
+msgstr "Número de Mensajes sin leer"
+
+#. module: material_purchase_requisitions
+#: model:ir.model.fields.selection,name:material_purchase_requisitions.selection__material_purchase_requisition__state__stock
+msgid "Orden de Compra creada"
+msgstr "Orden de Compra creada"
+
+#. module: material_purchase_requisitions
+#: model_terms:ir.ui.view,arch_db:material_purchase_requisitions.material_purchase_requisition_form_view
+#: model_terms:ir.ui.view,arch_db:material_purchase_requisitions.purchase_requisition
+msgid "Other Information"
+msgstr "Otra Información"
+
+#. module: material_purchase_requisitions
+#: model_terms:ir.ui.view,arch_db:material_purchase_requisitions.material_purchase_requisition_form_view
+#: model_terms:ir.ui.view,arch_db:material_purchase_requisitions.purchase_requisition
+msgid "Picking Details"
+msgstr "Detalles de Traslado"
+
+#. module: material_purchase_requisitions
+#: model:ir.model.fields,field_description:material_purchase_requisitions.field_material_purchase_requisition__custom_picking_type_id
+msgid "Picking Type"
+msgstr "Tipo de Traslado"
+
+#. module: material_purchase_requisitions
+#: model:ir.model.fields,field_description:material_purchase_requisitions.field_material_purchase_requisition__location_id
+msgid "Source Location"
+msgstr "Ubicación de Origen"
+
+#. module: material_purchase_requisitions
+#: model:ir.model.fields,field_description:material_purchase_requisitions.field_material_purchase_requisition__state
+#: model_terms:ir.ui.view,arch_db:material_purchase_requisitions.material_purchase_requisition_search_view
+msgid "State"
+msgstr "Estado"
+
+
+
+#. module: material_purchase_requisitions
+#: model:ir.model.fields,help:material_purchase_requisitions.field_material_purchase_requisition__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+"Status basado en Actividades\n"
+"Vencido: Fecha Límite en el pasado\n"
+"Hoy: Fecha de la Actividad es hoy\n"
+"Panificado: Actividades Futuras."
+
+#. module: material_purchase_requisitions
+#: model:ir.model,name:material_purchase_requisitions.model_stock_move
+msgid "Stock Move"
+msgstr "Movimiento de Existencias"
+
+#. module: material_purchase_requisitions
+#: model:ir.model,name:material_purchase_requisitions.model_stock_picking
+msgid "Transfer"
+msgstr "Transferencia"
+
+#. module: material_purchase_requisitions
+#: model:ir.model.fields,help:material_purchase_requisitions.field_material_purchase_requisition__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr "Tipo de excepción de actividad en el registro."
+
+#. module: material_purchase_requisitions
+#: model:ir.model.fields,field_description:material_purchase_requisitions.field_material_purchase_requisition_line__uom
+msgid "Unit of Measure"
+msgstr "Unidad de Medida"
+
+#. module: material_purchase_requisitions
+#: model:ir.model.fields,field_description:material_purchase_requisitions.field_material_purchase_requisition__message_unread
+msgid "Unread Messages"
+msgstr "Mensajes sin leer"
+
+#. module: material_purchase_requisitions
+#: model:ir.model.fields,field_description:material_purchase_requisitions.field_material_purchase_requisition__message_unread_counter
+msgid "Unread Messages Counter"
+msgstr "Contador de Mensajes sin leer"
+
+#. module: material_purchase_requisitions
+#: model_terms:ir.ui.view,arch_db:material_purchase_requisitions.material_purchase_requisition_search_view
+msgid "User Approve Date"
+msgstr "Fecha de Aprobación de Usuario"
+
+#. module: material_purchase_requisitions
+#: model:ir.model.fields,field_description:material_purchase_requisitions.field_material_purchase_requisition__website_message_ids
+msgid "Website Messages"
+msgstr "Mensajes del Sitio Web"
+
+#. module: material_purchase_requisitions
+#: model:ir.model.fields,help:material_purchase_requisitions.field_material_purchase_requisition__website_message_ids
+msgid "Website communication history"
+msgstr "Historial de comunicación del Sitio Web"
+
+#. module: material_purchase_requisitions
+#: model_terms:ir.ui.view,arch_db:material_purchase_requisitions.material_purchase_requisition_form_view
+msgid "confirm"
+msgstr "confirm"
+
+#. module: material_purchase_requisitions
+#: model:ir.model.fields,field_description:material_purchase_requisitions.field_material_purchase_requisition_line__price_unit
+msgid "Precio Unitario"
+msgstr "Precio Unitario"
+
+#. module: material_purchase_requisitions
+#: model:ir.model.fields,field_description:material_purchase_requisitions.field_material_purchase_requisition_line__product_id
+msgid "Product"
+msgstr "Producto"
+
+#. module: material_purchase_requisitions
+#: model:ir.model.fields,field_description:material_purchase_requisitions.field_material_purchase_requisition_line__partner_id
+msgid "Proveedor"
+msgstr "Proveedor"
+
+#. module: material_purchase_requisitions
+#: model:ir.model,name:material_purchase_requisitions.model_purchase_order
+#: model:ir.model.fields.selection,name:material_purchase_requisitions.selection__material_purchase_requisition_line__requisition_type__purchase
+#: model_terms:ir.ui.view,arch_db:material_purchase_requisitions.material_purchase_requisition_form_view
+msgid "Purchase Order"
+msgstr "Orden de compra"
+
+#. module: material_purchase_requisitions
+#: model:ir.model,name:material_purchase_requisitions.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr "Línea de Orden de compra"
+
+#. module: material_purchase_requisitions
+#: model:ir.model.fields,field_description:material_purchase_requisitions.field_material_purchase_requisition__purchase_order_ids
+msgid "Purchase Orders"
+msgstr "Ordenes de Compra"
+
+#. module: material_purchase_requisitions
+#: model:ir.actions.report,name:material_purchase_requisitions.report_purchase_requisition
+#: model:ir.model,name:material_purchase_requisitions.model_material_purchase_requisition
+#: model:ir.model.fields,field_description:material_purchase_requisitions.field_stock_picking__custom_requisition_id
+#: model:ir.ui.menu,name:material_purchase_requisitions.menu_item_purchase_requisition
+#: model_terms:ir.ui.view,arch_db:material_purchase_requisitions.purchase_requisition
+msgid "Purchase Requisition"
+msgstr "Pedido de Materiales"
+
+#. module: material_purchase_requisitions
+#: model_terms:ir.ui.view,arch_db:material_purchase_requisitions.purchase_requisition_employee_form_view
+msgid "Purchase Requisition Settings"
+msgstr "Ajustes de Pedido de Materiales"
+
+#. module: material_purchase_requisitions
+#: model:ir.actions.act_window,name:material_purchase_requisitions.action_material_purchase_requisition
+#: model:ir.ui.menu,name:material_purchase_requisitions.menu_action_purchase_requisition
+msgid "Purchase Requisitions"
+msgstr "Pedido de Materiales"
+
+#. module: material_purchase_requisitions
+#: model:ir.model.fields,field_description:material_purchase_requisitions.field_material_purchase_requisition__requisition_line_ids
+msgid "Purchase Requisitions Line"
+msgstr "Linea de Pedido de Materiales"
+
+#. module: material_purchase_requisitions
+#: model_terms:ir.ui.view,arch_db:material_purchase_requisitions.material_purchase_requisition_search_view
+msgid "Purchase Requistion search"
+msgstr "Busqueda de Pedido de Materiales"
+
+#. module: material_purchase_requisitions
+#: model:ir.model.fields,field_description:material_purchase_requisitions.field_material_purchase_requisition_line__qty
+msgid "Quantity"
+msgstr "Cantidad"
+
+#. module: material_purchase_requisitions
+#: model_terms:ir.ui.view,arch_db:material_purchase_requisitions.material_purchase_requisition_search_view
+msgid "Reason"
+msgstr "Razón"
+
+#. module: material_purchase_requisitions
+#: model_terms:ir.ui.view,arch_db:material_purchase_requisitions.purchase_requisition
+msgid "Reason for Requisition"
+msgstr "Razón de Pedido"
+
+#. module: material_purchase_requisitions
+#: model:ir.model.fields,field_description:material_purchase_requisitions.field_material_purchase_requisition__reason
+msgid "Reason for Requisitions"
+msgstr "Razón de Pedidos"
+
+#. module: material_purchase_requisitions
+#: model_terms:ir.ui.view,arch_db:material_purchase_requisitions.material_purchase_requisition_form_view
+msgid "Received"
+msgstr "Recibido"
+
+#. module: material_purchase_requisitions
+#: model:ir.model.fields,field_description:material_purchase_requisitions.field_material_purchase_requisition__receive_date
+msgid "Received Date"
+msgstr "Fecha de recepción"
+
+#. module: material_purchase_requisitions
+#: model:ir.model.fields.selection,name:material_purchase_requisitions.selection__material_purchase_requisition__state__reject
+msgid "Rechazado"
+msgstr "Rechazado"
+
+#. module: material_purchase_requisitions
+#: model:ir.model.fields.selection,name:material_purchase_requisitions.selection__material_purchase_requisition__state__receive
+msgid "Recibido"
+msgstr "Recibido"
+
+#. module: material_purchase_requisitions
+#: code:addons/material_purchase_requisitions/models/purchase_requisition.py:0
+#, python-format
+msgid "Select Picking Type under the picking details."
+msgstr "Seleccione tipo de traslado debajo de los detalles de traslado."
+
+#. module: material_purchase_requisitions
+#: code:addons/material_purchase_requisitions/models/purchase_requisition.py:0
+#, python-format
+msgid "Please create some requisition lines."
+msgstr "Por favor cree lineas de pedido."
+
+#. module: material_purchase_requisitions
+#: code:addons/material_purchase_requisitions/models/purchase_requisition.py:0
+#, python-format
+msgid ""
+"Please enter atleast one vendor on Requisition Lines for Requisition Action "
+"Purchase"
+msgstr ""
+"Por favor ingrese al menos un proveedor en las lineas de pedido para crear Pedido. "
+"Compra"
+
+#. module: material_purchase_requisitions
+#: code:addons/material_purchase_requisitions/models/purchase_requisition.py:0
+#, python-format
+msgid "Select Destination location under the picking details."
+msgstr "Seleccione Ubicación de Destino debajo de los detalles de traslado."
+
+#. module: material_purchase_requisitions
+#: code:addons/material_purchase_requisitions/models/purchase_requisition.py:0
+#, python-format
+msgid "Select Source location under the picking details."
+msgstr "Seleccione ubicación de origen debajo de los detalles de traslado."
+
+#. module: material_purchase_requisitions
+#: code:addons/material_purchase_requisitions/models/purchase_requisition.py:0
+#, python-format
+msgid ""
+"You can not delete Purchase Requisition which is not in draft or cancelled or "
+"rejected state."
+msgstr ""
+"No puedes borrar Pedidos que no se encuentren en estado Borrador o Cancelado o en "
+"Estado rechazado."
+
+
+
+

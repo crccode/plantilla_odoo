@@ -1,0 +1,792 @@
+<?xml version="1.0"?>
+<odoo>
+	<data>
+		<!-- Hereda y aumenta en el reporte de factura -->
+		<template id="report_invoice_document" inherit_id="account.report_invoice_document" >
+		
+			<xpath expr="//address" position="replace">
+			</xpath>
+			
+			<xpath expr="//div[@class='page']" position="replace">
+			<div class="row 1" style="font-size:10px;">
+				                
+
+                        <div class="col-4 text-center" style="font-size:9px" t-if="o.company_id" >
+                           
+                           <img t-if="o.company_id.logo" t-att-src="image_data_uri(o.company_id.logo)" style="max-height: 100px;" alt="Logo"/>
+                           <br/>
+                           <b><span t-if="o.company_id.name"><span t-field="o.company_id.name"/></span></b>
+                           <br/><b>Casa Matriz</b> <br/>
+                           <span t-field="o.company_id.street"/><br/>
+                           <span t-if="o.company_id.street2"><span t-field="o.company_id.street2"/><br/></span>
+                           
+                           Teléfonos: <span t-field="o.company_id.phone"/><br/>
+                           <span t-field="o.company_id.city"/>
+                            - <span t-field="o.company_id.country_id"/>
+                           
+                        </div>
+                        <div class="col-4 text-center" t-if="o.move_type">
+                          <p style="font-size:22px;">  
+                            <br/><br/><br/><br/><br/>
+							<t t-if="'Factura' in o.journal_id.name">
+								<span t-if="o.move_type == 'out_invoice' and (o.state == 'posted' or o.state == 'paid')">Factura</span>
+								<span t-if="o.move_type == 'out_invoice' and o.state == 'draft'">Factura Borrador</span>
+								<span t-if="o.move_type == 'out_invoice' and o.state == 'cancel'">Factura Anulada</span>
+								<span t-if="o.move_type == 'out_refund'">Credit Note</span>
+								<span t-if="o.move_type == 'in_refund'">Vendor Credit Note</span>
+								<span t-if="o.move_type == 'in_invoice'">Vendor Bill</span>
+							</t>
+							<t t-if="'Nota' in o.journal_id.name">
+								<span t-if="o.move_type == 'out_invoice' and (o.state == 'posted' or o.state == 'paid')">Nota</span>
+								<span t-if="o.move_type == 'out_invoice' and o.state == 'draft'">Nota Borrador</span>
+								<span t-if="o.move_type == 'out_invoice' and o.state == 'cancel'">Nota Anulada</span>
+								<span t-if="o.move_type == 'out_refund'">Credit Note</span>
+								<span t-if="o.move_type == 'in_refund'">Vendor Credit Note</span>
+								<span t-if="o.move_type == 'in_invoice'">Vendor Bill</span>
+							</t>
+                          </p>
+                        </div>
+                        <div class="col-4 text-center" t-if="o.name">
+                            <div style="background-color:#ffa446;">
+                            <b>
+                            
+                            
+							<t t-if="'Factura' in o.journal_id.name">
+								<p style="font-size:21px;">
+									<span t-if="o.company_id.vat"><span t-if="o.partner_id.vat">NIT : <span t-field="o.company_id.vat"/></span></span>
+									<br/>
+									<span t-if="o.move_type == 'out_invoice' and (o.state == 'posted' or o.state == 'paid')">Factura</span>
+									<span t-if="o.move_type == 'out_invoice' and o.state == 'draft'">Factura Borrador</span>
+									<span t-if="o.move_type == 'out_invoice' and o.state == 'cancel'">Factura Anulada</span>
+									<span t-if="o.move_type == 'out_refund'">Credit Note</span>
+									<span t-if="o.move_type == 'in_refund'">Vendor Credit Note</span>
+									<span t-if="o.move_type == 'in_invoice'">Vendor Bill</span>
+									
+									<span t-if="o.sequence_prefix"><br/> N° <span t-esc="str(o.name).replace(o.sequence_prefix,'')"/> </span>
+									<span t-if="not o.sequence_prefix"><br/> N° <span t-esc="str(o.name)"/> </span>
+								</p>
+							</t>
+							<t t-if="'Nota' in o.journal_id.name">
+							<p style="font-size:21px;">
+								<span t-esc="str(o.name)"/>
+								
+							</p>
+							</t>
+                            
+                            </b>
+                            <p style="font-size:12px;">
+                            <br/>
+                            <span t-if="o.autorizacion">Autorización N° : <span t-field="o.autorizacion"/></span>
+                            </p>
+                            </div>
+                            <br/>
+							
+							<p style="font-size:12px;background-color:#ffffff;">
+							ORIGINAL
+							</p>
+							<span t-if="o.autorizacion">
+								<p style="font-size:10px;background-color:#ffffff;">
+									<span t-if="o.journal_id.actividad_economica_id"><span t-field="o.journal_id.actividad_economica_id"/></span>
+								</p>
+							</span>
+                        </div>
+                        
+                        
+                </div>
+				<br/>
+				<div class="row 2" style="font-size:10px;">    
+                        
+                        <div class="col-8 text-left" t-if="o.invoice_date">
+                            <p style="font-size:21px;">
+                            <span t-if="o.company_id.city"><span t-field="o.company_id.city"/> , </span>  
+                            <!-- <span t-if="o.invoice_date"> <span t-field="o.invoice_date" t-field-options='{"format": "d"}'/> de <span t-field="o.invoice_date" t-field-options='{"format": "MMMM"}'/> del <span t-field="o.invoice_date" t-field-options='{"format": "yyyy"}'/></span>
+                            -->
+							<span t-esc="datetime.datetime.strftime(o.invoice_date, '%d de %B del %Y')"/>
+                            </p>
+                        </div>
+                      
+                        <div class="col-4 text-center" t-if="o.nit">
+                            <p style="font-size:21px;">
+                            NIT/CI : <span t-field="o.nit"/>
+                            </p>
+                        </div>
+                        <br/>
+                </div>
+				<span t-if="o.razonsocial" style="font-size:17px;">Señor(es) :  <span t-field="o.razonsocial"/></span>
+				<span t-if="not o.razonsocial" style="font-size:17px;">Cliente :  <span t-field="o.partner_id.name"/></span>
+
+				<!-- Is there a discount on at least one line? -->
+                <t t-set="con_imagenes" t-value="False"/>
+				<br/>
+				<!-- <table class="table table-condensed" name="invoice_line_table"> -->
+				<table class="table" name="invoice_line_table" style="height:130mm;">
+					<thead>
+						<tr>
+							<b>
+                                <th class="text-center" width="540" rowspan="2">Detalle</th>
+                                <th t-if="con_imagenes" class="text-center" rowspan="2" width="80">Imagen </th>
+                                <!-- <th class="hidden">Source Document</th>-->
+                                <th class="text-right" width="90" rowspan="2">Cantidad</th>
+								<th class="text-right" width="60" rowspan="2">Udm</th>
+                                <th class="text-right" width="150" rowspan="2">Precio Unidad</th>
+                                <th t-if="display_discount" class="text-right">Disc.(%)</th>
+                                <!-- <th class="hidden">Taxes</th> -->
+                                <th class="text-right" width="120" rowspan="2">Precio</th>     
+							</b>
+						</tr>
+					</thead>
+					<tbody>
+                            <tr t-foreach="o.invoice_line_ids" t-as="l" style="border-bottom:0px solid #ffffff;">
+                                <td><span t-field="l.name"/></td>
+                                <td t-if="con_imagenes">
+									<span t-field="l.product_id.image_small" t-field-options="{&quot;widget&quot;: &quot;image&quot;, &quot;class&quot;: &quot;img-rounded&quot;}"/>
+								</td>
+                                <!-- <td class="hidden"><span t-if="l.origin"><span t-field="l.origin"/></span></td> -->
+                                <td class="text-right">
+									<span t-esc="'%.1f'%(l.quantity)"/>
+                                    <!-- <span t-field="l.quantity"/> -->
+								</td>
+								<td class="text-left">
+                                    <span t-field="l.product_uom_id"/>
+                                </td>
+                                <td class="text-right">
+                                    <span t-field="l.price_unit"/>
+                                </td>
+                                <td t-if="display_discount" class="text-right">
+                                    <span t-field="l.discount"/>
+                                </td>
+                                <!--<td class="hidden">
+                                    <span t-esc="', '.join(map(lambda x: (x.description or x.name), l.invoice_line_tax_ids))"/>
+                                </td>-->
+                                <td class="text-right" id="price_total">
+                                    <span t-field="l.price_total"/>
+                                </td>
+                            </tr>
+                            <tr t-foreach="range(max(9-len(o.invoice_line_ids),0))" t-as="l">
+                                <td t-translation="off">&amp;nbsp; </td>
+                                <td t-if="con_imagenes"/>
+                                <!-- <td class="hidden"/> -->
+                                <td/>
+								<td/> 
+                                <td/>
+                                <td t-if="display_discount"/>
+                                <!-- <td class="hidden"/> -->
+                                <td/> 
+                            </tr>    
+					</tbody>
+				</table>
+				<div class="row 3" style="font-size:13px;"> 			
+					<div class="col-9">
+						<span t-if="o.totaltexto">Son: <span t-field="o.totaltexto"/><br/></span>
+					</div>
+					
+					<div id="total" class="row">
+						
+						<div class="col-4 text-right" style="font-size:15px;">
+							<table class="table" style="width: 197px;">
+								<tr style="border-bottom:0px solid #000000">
+									<td><strong>Total</strong></td>
+									<td class="text-right">
+										<span t-field="o.amount_total" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: o.currency_id}"/>
+									</td>
+								</tr>
+							</table>
+													
+						</div> 
+					
+					</div>		
+							
+				</div>
+				<div class="row 4" style="font-size:13px;"> 			
+					
+					<div class="col-5 pull-right" style="background-color:#ffa446;">
+						<!--
+						<div t-if="o.partner_id.ref">
+							<strong>Codigo Cliente:</strong> <span t-field="o.partner_id.ref"/>
+						</div>
+						-->
+						<div>
+							<strong>Cliente: </strong><span t-field="o.partner_id.name"/>
+							<br/>
+						</div>
+						<div>
+							<strong>Entrega a: 
+							</strong>
+							<span t-if="not o.partner_id.name == o.partner_shipping_id.name">
+								<span t-field="o.partner_shipping_id"/> - 
+							</span>
+							<span t-field="o.partner_shipping_id.street"/>
+							<br/>
+						</div>
+						
+						<div t-if="o.invoice_origin">
+							<strong>P Origen:</strong> <span t-field="o.invoice_origin"/>						
+						</div>
+						
+						<span t-if="o.invoice_payment_term_id">
+							<span t-field="o.invoice_payment_term_id.note"/>
+							<br/>
+						</span>
+						<span t-if="o.fiscal_position_id.note">
+							<span t-field="o.fiscal_position_id.note"/>
+							<br/>
+						</span> 
+						<br/><br/><br/>
+						
+					</div>
+					<div class="col-4 text-right"  t-if="o.codigodecontrol" style="font-size:12px;">
+							<br/>
+							<br/>
+							<span t-if="o.limiteemision"> Límite de Emisión:<br/><span t-field="o.limiteemision"/></span>
+							<br/>
+							<span t-if="o.codigodecontrol">  Código de Control:<br/><span t-field="o.codigodecontrol"/></span>	
+							<br/>
+							<br/>
+							<br/>
+					</div> 
+					<div class="col-3 text-center" t-if="o.codigodecontrol" style="font-size:12px;">
+							<br/>
+							<span t-if="o.sequence_prefix"><img t-att-src="'/report/barcode/?type=%s&amp;value=%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s&amp;width=%s&amp;height=%s' % ('QR', o.company_id.vat, '|', (o.name).replace(o.sequence_prefix,''),'|', o.autorizacion, '|', datetime.datetime.strftime(o.invoice_date, '%d/%m/%Y') , '|', '{0:,.2f}'.format(o.amount_total).replace(',','').replace('.', ','),'|', '{0:,.2f}'.format(o.amount_total).replace(',','').replace('.', ','),'|', o.codigodecontrol, '|', o.nit, '|', '0|0|0|0',  110, 110)" style="width:110px;height:110px"/></span>
+							<span t-if="not o.sequence_prefix"><img t-att-src="'/report/barcode/?type=%s&amp;value=%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s&amp;width=%s&amp;height=%s' % ('QR', o.company_id.vat, '|', (o.name),'|', o.autorizacion, '|', datetime.datetime.strftime(o.invoice_date, '%d/%m/%Y') , '|', '{0:,.2f}'.format(o.amount_total).replace(',','').replace('.', ','),'|', '{0:,.2f}'.format(o.amount_total).replace(',','').replace('.', ','),'|', o.codigodecontrol, '|', o.nit, '|', '0|0|0|0',  110, 110)" style="width:110px;height:110px"/></span>
+							<br/>
+							
+					</div>        		
+				</div>
+				<div class="col-12 text-center" t-if="o.journal_id.leyenda" style="font-size:12px;">    
+					<br/>
+					"ESTA FACTURA CONTRIBUYE AL DESARROLLO DEL PAÍS, EL USO ILÍCITO DE ÉSTA SERÁ SANCIONADO DE ACUERDO A LEY"
+					<br/>
+					Ley N° 453 : <span t-field="o.journal_id.leyenda"/>
+				</div> 
+				
+				
+				
+				
+				
+				<div style="page-break-before: always;">			
+					
+					<div class="row 1" style="font-size:10px;">
+				                
+
+                        <div class="col-4 text-center" style="font-size:9px" t-if="o.company_id" >
+                           
+                           <img t-if="o.company_id.logo" t-att-src="image_data_uri(o.company_id.logo)" style="max-height: 100px;" alt="Logo"/>
+                           <br/>
+                           <b><span t-if="o.company_id.name"><span t-field="o.company_id.name"/></span></b>
+                           <br/><b>Casa Matriz</b> <br/>
+                           <span t-field="o.company_id.street"/><br/>
+                           <span t-if="o.company_id.street2"><span t-field="o.company_id.street2"/><br/></span>
+                           
+                           Teléfonos: <span t-field="o.company_id.phone"/><br/>
+                           <span t-field="o.company_id.city"/>
+                            - <span t-field="o.company_id.country_id"/>
+                           
+                        </div>
+                        <div class="col-4 text-center" t-if="o.move_type">
+                          <p style="font-size:22px;">  
+                            <br/><br/><br/><br/><br/>
+							<t t-if="'Factura' in o.journal_id.name">
+								<span t-if="o.move_type == 'out_invoice' and (o.state == 'posted' or o.state == 'paid')">Factura</span>
+								<span t-if="o.move_type == 'out_invoice' and o.state == 'draft'">Factura Borrador</span>
+								<span t-if="o.move_type == 'out_invoice' and o.state == 'cancel'">Factura Anulada</span>
+								<span t-if="o.move_type == 'out_refund'">Credit Note</span>
+								<span t-if="o.move_type == 'in_refund'">Vendor Credit Note</span>
+								<span t-if="o.move_type == 'in_invoice'">Vendor Bill</span>
+							</t>
+							<t t-if="'Nota' in o.journal_id.name">
+								<span t-if="o.move_type == 'out_invoice' and (o.state == 'posted' or o.state == 'paid')">Nota</span>
+								<span t-if="o.move_type == 'out_invoice' and o.state == 'draft'">Nota Borrador</span>
+								<span t-if="o.move_type == 'out_invoice' and o.state == 'cancel'">Nota Anulada</span>
+								<span t-if="o.move_type == 'out_refund'">Credit Note</span>
+								<span t-if="o.move_type == 'in_refund'">Vendor Credit Note</span>
+								<span t-if="o.move_type == 'in_invoice'">Vendor Bill</span>
+							</t>
+                          </p>
+                        </div>
+                        <div class="col-4 text-center" t-if="o.name">
+                            <div style="background-color:#ffe866;">
+                            <b>
+                            
+                            <p style="font-size:21px;">
+							<t t-if="'Factura' in o.journal_id.name">
+								<p style="font-size:21px;">
+									<span t-if="o.company_id.vat"><span t-if="o.partner_id.vat">NIT : <span t-field="o.company_id.vat"/></span></span>
+									<br/>
+									<span t-if="o.move_type == 'out_invoice' and (o.state == 'posted' or o.state == 'paid')">Factura</span>
+									<span t-if="o.move_type == 'out_invoice' and o.state == 'draft'">Factura Borrador</span>
+									<span t-if="o.move_type == 'out_invoice' and o.state == 'cancel'">Factura Anulada</span>
+									<span t-if="o.move_type == 'out_refund'">Credit Note</span>
+									<span t-if="o.move_type == 'in_refund'">Vendor Credit Note</span>
+									<span t-if="o.move_type == 'in_invoice'">Vendor Bill</span>
+									<span t-if="o.sequence_prefix"><br/> N° <span t-esc="str(o.name).replace(o.sequence_prefix,'')"/> </span>
+									<span t-if="not o.sequence_prefix"><br/> N° <span t-esc="str(o.name)"/> </span>
+								</p>
+							</t>
+							<t t-if="'Nota' in o.journal_id.name">
+								<span t-esc="str(o.name)"/>
+								
+							</t>
+                            </p>
+                            </b>
+                            <p style="font-size:12px;">
+                            <br/>
+                            <span t-if="o.autorizacion">Autorización N° : <span t-field="o.autorizacion"/></span>
+                            </p>
+                            </div>
+                            <br/>
+							
+							<p style="font-size:12px;background-color:#ffffff;">
+							COPIA
+							</p>
+							<span t-if="o.autorizacion">
+								<p style="font-size:10px;background-color:#ffffff;">
+									<span t-if="o.journal_id.actividad_economica_id"><span t-field="o.journal_id.actividad_economica_id"/></span>
+								</p>
+							</span>
+                        </div>
+                        
+                        
+                </div>
+					<br/>
+					<div class="row 2" style="font-size:10px;">    
+							
+							<div class="col-8 text-left" t-if="o.invoice_date">
+								<p style="font-size:21px;">
+								<span t-if="o.company_id.city"><span t-field="o.company_id.city"/> , </span>  
+								<!-- <span t-if="o.invoice_date"> <span t-field="o.invoice_date" t-field-options='{"format": "d"}'/> de <span t-field="o.invoice_date" t-field-options='{"format": "MMMM"}'/> del <span t-field="o.invoice_date" t-field-options='{"format": "yyyy"}'/></span>
+								-->
+								<span t-esc="datetime.datetime.strftime(o.invoice_date, '%d de %B del %Y')"/>
+							
+								
+								</p>
+							</div>
+						  
+							<div class="col-4 text-center" t-if="o.nit">
+								<p style="font-size:21px;">
+								NIT/CI : <span t-field="o.nit"/>
+								</p>
+							</div>
+							<br/>
+					</div>
+
+					<span t-if="o.razonsocial" style="font-size:17px;">Señor(es) :  <span t-field="o.razonsocial"/></span>
+					<span t-if="not o.razonsocial" style="font-size:17px;">Cliente :  <span t-field="o.partner_id.name"/></span>
+
+					<!-- Is there a discount on at least one line? -->
+					<t t-set="con_imagenes" t-value="False"/>
+					<br/>
+					<!-- <table class="table table-condensed" name="invoice_line_table"> -->
+					<table class="table" name="invoice_line_table" style="height:130mm;">
+						<thead>
+							<tr>
+								<b>
+									<th class="text-center" width="540" rowspan="2">Detalle</th>
+									<th t-if="con_imagenes" class="text-center" rowspan="2" width="80">Imagen </th>
+									<!-- <th class="hidden">Source Document</th>-->
+									<th class="text-right" width="90" rowspan="2">Cantidad</th>
+									<th class="text-right" width="60" rowspan="2">Udm</th>
+									<th class="text-right" width="150" rowspan="2">Precio Unidad</th>
+									<th t-if="display_discount" class="text-right">Disc.(%)</th>
+									<!-- <th class="hidden">Taxes</th> -->
+									<th class="text-right" width="120" rowspan="2">Precio</th>     
+								</b>
+							</tr>
+						</thead>
+						<tbody>
+								<tr t-foreach="o.invoice_line_ids" t-as="l" style="border-bottom:0px solid #ffffff;">
+									<td><span t-field="l.name"/></td>
+									<td t-if="con_imagenes">
+										<span t-field="l.product_id.image_small" t-field-options="{&quot;widget&quot;: &quot;image&quot;, &quot;class&quot;: &quot;img-rounded&quot;}"/>
+									</td>
+									<!-- <td class="hidden"><span t-if="l.origin"><span t-field="l.origin"/></span></td> -->
+									<td class="text-right">
+										<span t-esc="'%.1f'%(l.quantity)"/>
+										<!-- <span t-field="l.quantity"/> -->
+									</td>
+									<td class="text-left">
+										<span t-field="l.product_uom_id"/>
+										
+									</td>
+									<td class="text-right">
+										<span t-field="l.price_unit"/>
+									</td>
+									<td t-if="display_discount" class="text-right">
+										<span t-field="l.discount"/>
+									</td>
+									<!--<td class="hidden">
+										<span t-esc="', '.join(map(lambda x: (x.description or x.name), l.invoice_line_tax_ids))"/>
+									</td>-->
+									<td class="text-right" id="price_total">
+										<span t-field="l.price_total"/>
+									</td>
+								</tr>
+								<tr t-foreach="range(max(9-len(o.invoice_line_ids),0))" t-as="l">
+									<td t-translation="off">&amp;nbsp; </td>
+									<td t-if="con_imagenes"/>
+									<!-- <td class="hidden"/> -->
+									<td/> 
+									<td/>
+									<td/> 
+									<td t-if="display_discount"/>
+									<!-- <td class="hidden"/> -->
+									<td/> 
+								</tr>    
+						</tbody>
+					</table>
+					<div class="row 3" style="font-size:13px;"> 			
+						<div class="col-9">
+							<span t-if="o.totaltexto">Son: <span t-field="o.totaltexto"/><br/></span>
+						</div>
+						
+						<div id="total" class="row">
+							
+							<div class="col-4 text-right" style="font-size:15px;">
+								<table class="table" style="width: 197px;">
+									<tr style="border-bottom:0px solid #000000">
+										<td><strong>Total</strong></td>
+										<td class="text-right">
+											<span t-field="o.amount_total" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: o.currency_id}"/>
+										</td>
+									</tr>
+								</table>
+														
+							</div> 
+						
+						</div>		
+								
+					</div>
+					<div class="row 4" style="font-size:13px;"> 			
+						<div class="col-5 pull-right" style="background-color:#ffe866;">
+									
+									
+								<!--
+								<div t-if="o.partner_id.ref">
+									<strong>Codigo Cliente:</strong> <span t-field="o.partner_id.ref"/>
+								</div>
+								-->
+								<div>
+									<strong>Cliente: </strong><span t-field="o.partner_id.name"/>
+									<br/>
+								</div>
+								<div>
+									<strong>Entrega a: 
+									</strong>
+									<span t-if="not o.partner_id.name == o.partner_shipping_id.name">
+										<span t-field="o.partner_shipping_id"/> - 
+									</span>
+									<span t-field="o.partner_shipping_id.street"/>
+									<br/>
+								</div>
+								
+								<div t-if="o.invoice_origin">
+									<strong>P Origen:</strong> <span t-field="o.invoice_origin"/>						
+								</div>
+							<span t-if="o.invoice_payment_term_id">
+								<span t-field="o.invoice_payment_term_id.note"/>
+								<br/>
+							</span>
+							<span t-if="o.fiscal_position_id.note">
+								<span t-field="o.fiscal_position_id.note"/>
+								<br/>
+							</span> 
+							<strong>Nota: </strong>
+							<span t-if="o.narration"><span t-field="o.narration"/></span>
+							<span t-if="not o.narration"><br/><br/></span>
+							
+						</div>
+						<div class="col-4 text-right"  t-if="o.codigodecontrol"  style="font-size:12px;">
+							<br/>
+							<br/>
+						
+							<span t-if="o.limiteemision"> Límite de Emisión:<br/><span t-field="o.limiteemision"/></span>
+							<br/>
+							<span t-if="o.codigodecontrol">  Código de Control:<br/><span t-field="o.codigodecontrol"/></span>	
+							<br/>
+					</div> 
+						<div class="col-3 text-center" t-if="o.codigodecontrol" style="font-size:12px;">
+								<br/>
+								<span t-if="o.sequence_prefix"><img t-att-src="'/report/barcode/?type=%s&amp;value=%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s&amp;width=%s&amp;height=%s' % ('QR', o.company_id.vat, '|', (o.name).replace(o.sequence_prefix,''),'|', o.autorizacion, '|', datetime.datetime.strftime(o.invoice_date, '%d/%m/%Y') , '|', '{0:,.2f}'.format(o.amount_total).replace(',','').replace('.', ','),'|', '{0:,.2f}'.format(o.amount_total).replace(',','').replace('.', ','),'|', o.codigodecontrol, '|', o.nit, '|', '0|0|0|0',  110, 110)" style="width:110px;height:110px"/></span>
+								<span t-if="not o.sequence_prefix"><img t-att-src="'/report/barcode/?type=%s&amp;value=%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s&amp;width=%s&amp;height=%s' % ('QR', o.company_id.vat, '|', (o.name),'|', o.autorizacion, '|', datetime.datetime.strftime(o.invoice_date, '%d/%m/%Y') , '|', '{0:,.2f}'.format(o.amount_total).replace(',','').replace('.', ','),'|', '{0:,.2f}'.format(o.amount_total).replace(',','').replace('.', ','),'|', o.codigodecontrol, '|', o.nit, '|', '0|0|0|0',  110, 110)" style="width:110px;height:110px"/></span>
+								<br/>
+								
+						</div>        		
+					</div>
+					<div class="col-12 text-center" t-if="o.journal_id.leyenda" style="font-size:12px;">    
+					<br/>
+					"ESTA FACTURA CONTRIBUYE AL DESARROLLO DEL PAÍS, EL USO ILÍCITO DE ÉSTA SERÁ SANCIONADO DE ACUERDO A LEY"
+					<br/>
+					Ley N° 453 : <span t-field="o.journal_id.leyenda"/>
+				</div> 
+				</div>
+				<div style="page-break-before: always;">
+					<t t-if="'Factura' in o.journal_id.name">
+							
+						<div style="page-break-before: always;">
+									<div class="row 1" style="font-size:10px;">
+										
+
+									<div class="col-4 text-center" style="font-size:9px" t-if="o.company_id" >
+									   
+									   <img t-if="o.company_id.logo" t-att-src="image_data_uri(o.company_id.logo)" style="max-height: 100px;" alt="Logo"/>
+									   <br/>
+									   <b><span t-if="o.company_id.name"><span t-field="o.company_id.name"/></span></b>
+									   <br/><b>Casa Matriz</b> <br/>
+									   <span t-field="o.company_id.street"/><br/>
+									   <span t-if="o.company_id.street2"><span t-field="o.company_id.street2"/><br/></span>
+									   
+									   Teléfonos: <span t-field="o.company_id.phone"/><br/>
+									   <span t-field="o.company_id.city"/>
+										- <span t-field="o.company_id.country_id"/>
+									   
+									</div>
+									<div class="col-4 text-center" t-if="o.move_type">
+									  <p style="font-size:22px;">  
+										<br/><br/><br/><br/><br/>
+										<t t-if="'Factura' in o.journal_id.name">
+											<span t-if="o.move_type == 'out_invoice' and (o.state == 'posted' or o.state == 'paid')">Factura</span>
+											<span t-if="o.move_type == 'out_invoice' and o.state == 'draft'">Factura Borrador</span>
+											<span t-if="o.move_type == 'out_invoice' and o.state == 'cancel'">Factura Anulada</span>
+											<span t-if="o.move_type == 'out_refund'">Credit Note</span>
+											<span t-if="o.move_type == 'in_refund'">Vendor Credit Note</span>
+											<span t-if="o.move_type == 'in_invoice'">Vendor Bill</span>
+										</t>
+										<t t-if="'Nota' in o.journal_id.name">
+											<span t-if="o.move_type == 'out_invoice' and (o.state == 'posted' or o.state == 'paid')">Nota</span>
+											<span t-if="o.move_type == 'out_invoice' and o.state == 'draft'">Nota Borrador</span>
+											<span t-if="o.move_type == 'out_invoice' and o.state == 'cancel'">Nota Anulada</span>
+											<span t-if="o.move_type == 'out_refund'">Credit Note</span>
+											<span t-if="o.move_type == 'in_refund'">Vendor Credit Note</span>
+											<span t-if="o.move_type == 'in_invoice'">Vendor Bill</span>
+										</t>
+									  </p>
+									</div>
+									<div class="col-4 text-center" t-if="o.name">
+										<div style="background-color:#fda1a1;">
+										<b>
+										
+										<p style="font-size:21px;">
+										<t t-if="'Factura' in o.journal_id.name">
+											<p style="font-size:21px;">
+												<span t-if="o.company_id.vat"><span t-if="o.partner_id.vat">NIT : <span t-field="o.company_id.vat"/></span></span>
+												<br/>
+												<span t-if="o.move_type == 'out_invoice' and (o.state == 'posted' or o.state == 'paid')">Factura</span>
+												<span t-if="o.move_type == 'out_invoice' and o.state == 'draft'">Factura Borrador</span>
+												<span t-if="o.move_type == 'out_invoice' and o.state == 'cancel'">Factura Anulada</span>
+												<span t-if="o.move_type == 'out_refund'">Credit Note</span>
+												<span t-if="o.move_type == 'in_refund'">Vendor Credit Note</span>
+												<span t-if="o.move_type == 'in_invoice'">Vendor Bill</span>
+												<span t-if="o.sequence_prefix"><br/> N° <span t-esc="str(o.name).replace(o.sequence_prefix,'')"/> </span>
+												<span t-if="not o.sequence_prefix"><br/> N° <span t-esc="str(o.name)"/> </span>
+											</p>
+										</t>
+										<t t-if="'Nota' in o.journal_id.name">
+											<span t-esc="str(o.name)"/>
+											
+										</t>
+										</p>
+										</b>
+										<p style="font-size:12px;">
+										<br/>
+										<span t-if="o.autorizacion">Autorización N° : <span t-field="o.autorizacion"/></span>
+										</p>
+										</div>
+										<br/>
+										
+										<p style="font-size:12px;background-color:#ffffff;">
+										COPIA CONTABILIDAD
+										</p>
+										<span t-if="o.autorizacion">
+											<p style="font-size:10px;background-color:#ffffff;">
+												<span t-if="o.journal_id.actividad_economica_id"><span t-field="o.journal_id.actividad_economica_id"/></span>
+											</p>
+										</span>
+									</div>
+									
+									
+							</div>
+							<br/>
+							<div class="row 2" style="font-size:10px;">    
+									
+									<div class="col-8 text-left" t-if="o.invoice_date">
+										<p style="font-size:21px;">
+										<span t-if="o.company_id.city"><span t-field="o.company_id.city"/> , </span>  
+										<!-- <span t-if="o.invoice_date"> <span t-field="o.invoice_date" t-field-options='{"format": "d"}'/> de <span t-field="o.invoice_date" t-field-options='{"format": "MMMM"}'/> del <span t-field="o.invoice_date" t-field-options='{"format": "yyyy"}'/></span>
+										-->
+										<span t-esc="datetime.datetime.strftime(o.invoice_date, '%d de %B del %Y')"/>
+									
+									
+										</p>
+									</div>
+								  
+									<div class="col-4 text-center" t-if="o.nit">
+										<p style="font-size:21px;">
+										NIT/CI : <span t-field="o.nit"/>
+										</p>
+									</div>
+									<br/>
+							</div>
+							<span t-if="o.razonsocial" style="font-size:17px;">Señor(es) :  <span t-field="o.razonsocial"/></span>	
+							<span t-if="not o.razonsocial" style="font-size:17px;">Cliente :  <span t-field="o.partner_id.name"/></span>
+							<!-- Is there a discount on at least one line? -->
+							<t t-set="con_imagenes" t-value="False"/>
+							<br/>
+							<!-- <table class="table table-condensed" name="invoice_line_table"> -->
+							<table class="table" name="invoice_line_table" style="height:130mm;">
+								<thead>
+									<tr>
+										<b>
+											<th class="text-center" width="540" rowspan="2">Detalle</th>
+											<th t-if="con_imagenes" class="text-center" rowspan="2" width="80">Imagen </th>
+											<!-- <th class="hidden">Source Document</th>-->
+											<th class="text-right" width="90" rowspan="2">Cantidad</th>
+											<th class="text-right" width="60" rowspan="2">Udm</th>
+											<th class="text-right" width="150" rowspan="2">Precio Unidad</th>
+											<th t-if="display_discount" class="text-right">Disc.(%)</th>
+											<!-- <th class="hidden">Taxes</th> -->
+											<th class="text-right" width="120" rowspan="2">Precio</th>     
+										</b>
+									</tr>
+								</thead>
+								<tbody>
+										<tr t-foreach="o.invoice_line_ids" t-as="l" style="border-bottom:0px solid #ffffff;">
+											<td><span t-field="l.name"/></td>
+											<td t-if="con_imagenes">
+												<span t-field="l.product_id.image_small" t-field-options="{&quot;widget&quot;: &quot;image&quot;, &quot;class&quot;: &quot;img-rounded&quot;}"/>
+											</td>
+											<!-- <td class="hidden"><span t-if="l.origin"><span t-field="l.origin"/></span></td> -->
+											<td class="text-right">
+												<span t-esc="'%.1f'%(l.quantity)"/>
+												<!-- <span t-field="l.quantity"/> -->
+											</td>
+											<td class="text-left">
+												<span t-field="l.product_uom_id"/>
+											</td>
+											<td class="text-right">
+												<span t-field="l.price_unit"/>
+											</td>
+											<td t-if="display_discount" class="text-right">
+												<span t-field="l.discount"/>
+											</td>
+											<!--<td class="hidden">
+												<span t-esc="', '.join(map(lambda x: (x.description or x.name), l.invoice_line_tax_ids))"/>
+											</td>-->
+											<td class="text-right" id="price_total">
+												<span t-field="l.price_total"/>
+											</td>
+										</tr>
+										<tr t-foreach="range(max(9-len(o.invoice_line_ids),0))" t-as="l">
+											<td t-translation="off">&amp;nbsp; </td>
+											<td t-if="con_imagenes"/>
+											<!-- <td class="hidden"/> -->
+											<td/> 
+											<td/>
+											<td/> 
+											<td t-if="display_discount"/>
+											<!-- <td class="hidden"/> -->
+											<td/> 
+										</tr>    
+								</tbody>
+							</table>
+							<div class="row 3" style="font-size:13px;"> 			
+								<div class="col-9">
+									<span t-if="o.totaltexto">Son: <span t-field="o.totaltexto"/><br/></span>
+								</div>
+								
+								<div id="total" class="row">
+									
+									<div class="col-4 text-right" style="font-size:15px;">
+										<table class="table" style="width: 197px;">
+											<tr style="border-bottom:0px solid #000000">
+												<td><strong>Total</strong></td>
+												<td class="text-right">
+													<span t-field="o.amount_total" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: o.currency_id}"/>
+												</td>
+											</tr>
+										</table>
+																
+									</div> 
+								
+								</div>		
+										
+							</div>
+							<div class="row 4" style="font-size:13px;"> 			
+								<div class="col-5 pull-right" style="background-color:#fda1a1;">
+									
+									
+									<!--
+									<div t-if="o.partner_id.ref">
+										<strong>Codigo Cliente:</strong> <span t-field="o.partner_id.ref"/>
+									</div>
+									-->
+									<div>
+										<strong>Cliente: </strong><span t-field="o.partner_id.name"/>
+										<br/>
+									</div>
+									<div>
+										<strong>Entrega a: 
+										</strong>
+										<span t-if="not o.partner_id.name == o.partner_shipping_id.name">
+											<span t-field="o.partner_shipping_id"/> - 
+										</span>
+										<span t-field="o.partner_shipping_id.street"/>
+										<br/>
+									</div>
+									
+									<div t-if="o.invoice_origin">
+										<strong>P Origen:</strong> <span t-field="o.invoice_origin"/>						
+									</div>
+					
+									
+									<div name="ref" t-if="o.ref">
+										<strong>Referencia: </strong><span t-field="o.ref"/>
+										<br/>
+									</div>
+									
+									<span t-if="o.invoice_payment_term_id">
+										<span t-field="o.invoice_payment_term_id.note"/>
+										<br/>
+									</span>
+									<span t-if="o.fiscal_position_id.note">
+										<span t-field="o.fiscal_position_id.note"/>
+										<br/>
+									</span> 
+									<strong>Nota: </strong>
+									<span t-if="o.narration"><span t-field="o.narration"/></span>
+									<span t-if="not o.narration"><br/><br/></span>
+									
+							</div>
+							<div class="col-4 text-right"  t-if="o.codigodecontrol" style="font-size:12px;">
+								<br/>
+								<br/>
+						
+								<span t-if="o.limiteemision"> Límite de Emisión:<br/><span t-field="o.limiteemision"/></span>
+								<br/>
+								<span t-if="o.codigodecontrol">  Código de Control:<br/><span t-field="o.codigodecontrol"/></span>	
+								<br/>
+							</div> 		
+							<div class="col-3 text-center" t-if="o.codigodecontrol" style="font-size:12px;">
+										<br/>
+										<span t-if="o.sequence_prefix"><img t-att-src="'/report/barcode/?type=%s&amp;value=%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s&amp;width=%s&amp;height=%s' % ('QR', o.company_id.vat, '|', (o.name).replace(o.sequence_prefix,''),'|', o.autorizacion, '|', datetime.datetime.strftime(o.invoice_date, '%d/%m/%Y') , '|', '{0:,.2f}'.format(o.amount_total).replace(',','').replace('.', ','),'|', '{0:,.2f}'.format(o.amount_total).replace(',','').replace('.', ','),'|', o.codigodecontrol, '|', o.nit, '|', '0|0|0|0',  110, 110)" style="width:110px;height:110px"/></span>
+										<span t-if="not o.sequence_prefix"><img t-att-src="'/report/barcode/?type=%s&amp;value=%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s&amp;width=%s&amp;height=%s' % ('QR', o.company_id.vat, '|', (o.name),'|', o.autorizacion, '|', datetime.datetime.strftime(o.invoice_date, '%d/%m/%Y') , '|', '{0:,.2f}'.format(o.amount_total).replace(',','').replace('.', ','),'|', '{0:,.2f}'.format(o.amount_total).replace(',','').replace('.', ','),'|', o.codigodecontrol, '|', o.nit, '|', '0|0|0|0',  110, 110)" style="width:110px;height:110px"/></span>
+										<br/>
+										
+							</div>        		
+							</div>
+							<div class="col-12 text-center" t-if="o.journal_id.leyenda" style="font-size:12px;">    
+								<br/>
+								"ESTA FACTURA CONTRIBUYE AL DESARROLLO DEL PAÍS, EL USO ILÍCITO DE ÉSTA SERÁ SANCIONADO DE ACUERDO A LEY"
+								<br/>
+								Ley N° 453 : <span t-field="o.journal_id.leyenda"/>
+							</div> 
+					
+						</div>
+								
+					</t>
+				</div>
+				
+			</xpath>
+			
+	
+		</template>
+	</data>
+</odoo>

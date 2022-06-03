@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <!-- Sequence-->
+        <record id="seq_extra_sequence" model="ir.sequence">
+            <field name="name">Extra Sequence</field>
+            <field name="code">move.pdfreports.ingresos</field>
+            <field name="prefix">INGRESOS/%(range_year)s/%(range_month)s/</field>
+            <field name="padding">0</field>
+			<field name="use_date_range">True</field>
+			<field name="range_reset">monthly</field>
+            <field name="company_id" eval="False"/>
+        </record>
+		<record id="seq_extra_sequence2" model="ir.sequence">
+            <field name="name">Extra Sequence2</field>
+            <field name="code">move.pdfreports.egresos</field>
+            <field name="prefix">EGRESOS/%(range_year)s/%(range_month)s/</field>
+            <field name="padding">0</field>
+			<field name="use_date_range">True</field>
+			<field name="range_reset">monthly</field>
+            <field name="company_id" eval="False"/>
+        </record>
+		<record id="seq_extra_sequence3" model="ir.sequence">
+            <field name="name">Extra Sequence3</field>
+            <field name="code">move.pdfreports.traspasos</field>
+            <field name="prefix">TRASPASOS/%(range_year)s/%(range_month)s/</field>
+            <field name="padding">0</field>
+			<field name="use_date_range">True</field>
+			<field name="range_reset">monthly</field>
+            <field name="company_id" eval="False"/>
+        </record>
+		<record id="seq_extra_sequence4" model="ir.sequence">
+            <field name="name">Extra Sequence</field>
+            <field name="code">move.pdfreports.ingresos2</field>
+            <field name="prefix">INGRESOS2/%(range_year)s/%(range_month)s/</field>
+            <field name="padding">0</field>
+			<field name="use_date_range">True</field>
+			<field name="range_reset">monthly</field>
+            <field name="company_id" eval="False"/>
+        </record>
+		<record id="seq_extra_sequence5" model="ir.sequence">
+            <field name="name">Extra Sequence2</field>
+            <field name="code">move.pdfreports.egresos2</field>
+            <field name="prefix">EGRESOS2/%(range_year)s/%(range_month)s/</field>
+            <field name="padding">0</field>
+			<field name="use_date_range">True</field>
+			<field name="range_reset">monthly</field>
+            <field name="company_id" eval="False"/>
+        </record>
+		<record id="seq_extra_sequence6" model="ir.sequence">
+            <field name="name">Extra Sequence3</field>
+            <field name="code">move.pdfreports.traspasos2</field>
+            <field name="prefix">TRASPASOS2/%(range_year)s/%(range_month)s/</field>
+            <field name="padding">0</field>
+			<field name="use_date_range">True</field>
+			<field name="range_reset">monthly</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        
+        <!-- QWeb Reports for Project -->
+        <report
+            id="project_report"
+            model="project.project"
+            menu="True"
+            report_type="qweb-pdf"
+            string="Project Report"
+            name="odoo_job_costing_management.project_report_id"
+            file="odoo_job_costing_management.project_report_id" 
+         />
+        
+        <!-- QWeb Reports for Project Task -->
+        <report
+            id="task_report"
+            model="project.task"
+            menu="True"
+            report_type="qweb-pdf"
+            string="Task Report"
+            name="odoo_job_costing_management.task_report_id" 
+            file="odoo_job_costing_management.task_report_id"
+         />
+        
+    </data>
+</openerp>

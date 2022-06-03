@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        
+        <menuitem id="menu_maintenance_config" name="Maintenance" parent="odoo_job_costing_management.menu_job_cost_configuration" />
+        <menuitem id="menu_equipment_checklist_config" name="Maintenance Checklists" parent="menu_maintenance_config" 
+                  action="asset_mro_maintenance_management.action_equipment_checklist"/>
+        
+        <menuitem id="menu_jobs_maintenance" name="Maintenance" groups="base.group_user,maintenance.group_equipment_manager" 
+                  parent="odoo_job_costing_management.menu_job_managmt" sequence="3"/>
+        <menuitem id="menu_item_maintenance_requests" name="Maintenance Requests" parent="menu_jobs_maintenance" 
+                  action="maintenance.hr_equipment_request_action"/>
+        <menuitem id="menu_item_maintenance_equipments" name="Equipments" parent="menu_jobs_maintenance"  
+                  action="maintenance.hr_equipment_action"/>
+        
+    </data>
+</odoo>

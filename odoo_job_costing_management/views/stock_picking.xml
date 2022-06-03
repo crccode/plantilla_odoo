@@ -1,0 +1,70 @@
+<odoo>
+    <data>
+    <!--
+    <record id="view_picking_form_inherit_purchase_requistion" model="ir.ui.view">
+        <field name="name">stock.picking.form</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form/header" position="inside">
+               <button name="%(action_purchase_requistion)d" string="Create Purchase Order" type="action" class="oe_highlight" groups="base.group_user"/>
+            </xpath>
+            <field name="backorder_id" position="after">
+                <field name="task_id"/>
+                <field name="task_user_id"/>
+                <field name="project_id"/>
+                <field name="analytic_account_id"/>
+                <field name="purchase_order_ids" invisible="1"/>
+            </field>
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button class="oe_stat_button" name="view_purchase_order" type="object"
+                        icon="fa-shopping-cart">
+                    <field string="Purchases" name="purchase_order_count" widget="statinfo"/>
+                </button>
+            </xpath>
+            <xpath expr="//form/sheet/notebook" position="inside">
+                <page string="Materials / BOQ Cost" name="job_cost_stock_material_boq">
+                    <group>
+                        <field name="equipment_machine_total"/>
+                        <field name="worker_resource_total"/>
+                        <field name="work_cost_package_total"/>
+                        <field name="subcontract_total"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+    -->
+    <record id="purchase_order_form_inherit_picking" model="ir.ui.view">
+        <field name="name">purchase.order.form</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+            <field name="origin" position="after">
+                <field name="picking_id"/>
+            </field>
+        </field>
+    </record>
+    
+    <record id="purchase_rfq_construction" model="ir.actions.act_window">
+            <field name="name">Purchase Order</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">purchase.order</field>
+            <field name="view_mode">tree,kanban,form,pivot,graph,calendar</field>
+            <field name="search_view_id" ref="purchase.view_purchase_order_filter"/>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to create a request for quotation.
+              </p><p>
+                The quotation contains the history of the discussion/negotiation
+                you had with your vendor. Once confirmed, a request for
+                quotation is converted into a purchase order.
+              </p><p>
+                Most propositions of purchase orders are created automatically
+                by Odoo based on inventory needs.
+              </p>
+            </field>
+        </record>
+    
+    </data>
+</odoo>

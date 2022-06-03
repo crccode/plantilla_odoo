@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <template id="project_report_id">
+          <t t-foreach="docs" t-as="doc">
+            <t t-call="web.html_container">
+             <t t-call="web.internal_layout"> <!--odoo11-->
+                <div class="page">
+                     <div>
+                         <h3>
+                             <strong><span t-field="doc.name"/></strong> 
+                         </h3>
+                         <h4>
+                             <table class="table table-responsive" name="table_1">
+                                <tr>
+                                    <td><strong>Customer</strong></td>
+                                    <td><strong>Project Manager</strong></td>
+<!--                                    <td><strong>Project State</strong></td-->
+                                </tr>
+                                <tr>
+                                    <td><span t-field="doc.partner_id.name"/></td>
+                                    <td><span t-field="doc.user_id.name"/></td>
+<!--                                    <td><span t-field="doc.state"/></td-->
+                                </tr>
+                             </table>
+                         </h4>
+                         <h3>
+                             <strong>Construction Site Detail:</strong> 
+                         </h3>
+                         <h4>
+                             <table class="table table-responsive" name="table_2">
+                                <tr>
+                                    <td><strong>Types of Construction</strong></td>
+                                    <td><strong>Location</strong></td>
+                                </tr>
+                                <tr>
+                                    <td><span t-field="doc.type_of_construction"/></td>
+                                    <td>
+                                        <div name="invoice_address">
+                                            <address t-field="doc.location_id"
+                                                t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": True}' />
+                                        </div>
+                                    </td>
+                                </tr>
+                             </table>
+                         </h4>
+                         <h3>
+                             <strong>Tasks:</strong> 
+                         </h3>
+                         <table class="table table-responsive" name="table_3">
+                            <tr style="border: 2px solid black;">
+                                <th>Task Name</th>
+                                <th>Planned Hours</th>
+                                <th>Spent Hours</th>
+                                <th>Remaining Hours</th>
+                                <th>Assigned To</th>
+                                <th>Assigning Date</th>
+                                <th>Deadline</th>
+                                <th>Stage</th>
+                            </tr>
+                            <t t-foreach="doc.task_ids" t-as="task">
+                                <tr style="border: 2px solid black;">
+                                    <td><span t-field="task.name"/></td>
+                                    <td><span t-field="task.planned_hours" /></td>
+                                    <td><span t-field="task.effective_hours" /></td>
+                                    <td><span t-field="task.remaining_hours" /></td>
+                                    <td><span t-field="task.user_id.name"/></td>
+                                    <td><span t-field="task.date_assign"/></td>
+                                    <td><span t-field="task.date_deadline"/></td>
+                                    <td><span t-field="task.stage_id.name"/></td>
+                                </tr>
+                            </t>
+                         </table>
+                     </div>
+                </div>
+              </t>
+              </t>
+          </t>
+        </template>
+        
+    </data>
+</openerp>
