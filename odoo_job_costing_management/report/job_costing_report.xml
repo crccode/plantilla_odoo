@@ -1,0 +1,503 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+  <data>
+    <record id="paperformat_my_jobcost_landscape_report" model="report.paperformat">
+        <field name="name">Job Cost Report</field>
+        <field name="default" eval="True" />
+        <field name="format">A4</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Landscape</field>
+        <field name="margin_top">55</field>
+        <field name="margin_bottom">0</field>
+        <field name="margin_left">1</field>
+        <field name="margin_right">1</field>
+        <field name="header_line" eval="False" />
+        <field name="header_spacing">50</field>
+        <field name="dpi">90</field>
+    </record>
+        
+   <report
+       id="job_costing_report"
+       model="job.costing"
+       string="Job Costing"
+       report_type="qweb-pdf"
+       name="odoo_job_costing_management.report_job_costing"
+       file="odoo_job_costing_management.report_job_costing"
+       paperformat = "odoo_job_costing_management.paperformat_my_jobcost_landscape_report"
+   />
+    <template id="report_job_costing">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.internal_layout">
+                    <div class="page">
+                    
+                        <center><h2><span t-field="doc.number"/></h2></center>
+                            <div class="row mt32 mb32">  
+                            <table class="table table-condensed table-bordered">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <strong>Name </strong>
+                                    </td>
+                                    <td>
+                                       <span t-field="doc.name"/>
+                                    </td>
+                                    <td>
+                                        <strong>Create Date </strong>
+                                    </td>
+                                    <td>
+                                       <span t-field="doc.start_date"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong>Project </strong>
+                                    </td>
+                                    <td>
+                                       <span t-field="doc.project_id.name"/>
+                                    </td>
+                                    <td>
+                                        <strong>Closed Date </strong>
+                                    </td>
+                                    <td>
+                                       <span t-field="doc.complete_date"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong>Analytic Account </strong>
+                                    </td>
+                                    <td>
+                                       <span t-field="doc.analytic_id.name"/>
+                                    </td>
+                                    <td>
+                                        <strong>Created By </strong>
+                                    </td>
+                                    <td>
+                                       <span t-field="doc.user_id.name"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong>Job Order </strong>
+                                    </td>
+                                    <td>
+                                       <span t-field="doc.task_id.name"/>
+                                    </td>
+                                    <td>
+                                        <strong>Currency </strong>
+                                    </td>
+                                    <td>
+                                       <span t-field="doc.currency_id.name"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong>Issue </strong>
+                                    </td>
+                                    <td>
+<!--                                       <span t-field="doc.issue_id.name"/>-->
+                                    </td>
+                                    <td>
+                                        <strong>Company </strong>
+                                    </td>
+                                    <td>
+                                       <span t-field="doc.company_id.name"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong>Customer </strong>
+                                    </td>
+                                    <td>
+                                       <span t-field="doc.partner_id.name"/>
+                                    </td>
+                                    <td>
+                                        <strong>Description </strong>
+                                    </td>
+                                    <td>
+                                       <span t-field="doc.description"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                    </td>
+                                    <td>
+                                        <strong>SO Number </strong>
+                                    </td>
+                                    <td>
+                                       <span t-field="doc.so_number"/>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </div>
+                        <div t-if="doc.job_cost_line_ids">
+                            <h3>Direct Materials</h3>
+                            <table class="table table-sm o_main_table">
+                                <thead>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Job Type</th>
+                                        <th>Product</th>
+                                        <th>Description</th>
+                                        <th>Reference</th>
+                                        <th class="text-right">Quantity</th>
+                                        <th class="text-right">Cost / Unit</th>
+                                        <th class="text-right">Actual Purchased Quantity</th>
+                                        <th class="text-right">Actual Invoice Quantity</th>
+                                        <th class="text-right">Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr t-foreach="doc.job_cost_line_ids" t-as="material_line">
+                                        <td>
+                                            <span t-field="material_line.date"/> 
+                                        </td>
+                                        <td>
+                                            <span t-field="material_line.job_type_id.name"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="material_line.product_id.name"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="material_line.description"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="material_line.reference"/>
+                                        </td>
+                                        <td class="text-right">
+                                            <span t-field="material_line.product_qty"/> <span t-field="material_line.uom_id"/>
+                                        </td>
+                                        <td class="text-right">
+                                            <span t-field="material_line.cost_price" t-options='{"widget": "monetary", "display_currency": doc.currency_id}'/>
+                                        </td>
+                                        <td class="text-right">
+                                            <span t-field="material_line.actual_quantity"/>
+                                        </td>
+                                        <td class="text-right">
+                                            <span t-field="material_line.actual_invoice_quantity"/>
+                                        </td>
+                                        <td class="text-right">
+                                            <span t-field="material_line.total_cost" t-options='{"widget": "monetary", "display_currency": doc.currency_id}'/>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div t-if="doc.job_labour_line_ids">
+                            <h3>Direct Labour</h3>
+                            <table class="table table-sm o_main_table">
+                                <thead>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Job Type</th>
+                                        <th>Product</th>
+                                        <th>Description</th>
+                                        <th>Reference</th>
+                                        <th class="text-right">Hours</th>
+                                        <th class="text-right">Cost / Unit</th>
+                                        <th class="text-right">Actual Timesheet hours</th>
+                                        <th class="text-right">Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr t-foreach="doc.job_labour_line_ids" t-as="labor_line">
+                                        <td>
+                                            <span t-field="labor_line.date"/> 
+                                        </td>
+                                        <td>
+                                            <span t-field="labor_line.job_type_id.name"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="labor_line.product_id.name"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="labor_line.description"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="labor_line.reference"/>
+                                        </td>
+                                        <td class="text-right">
+                                            <span t-esc="'%02d:%02d' % (int(str(labor_line.hours).split('.')[0]), int(float(str('%.2f' % labor_line.hours).split('.')[1])/100*60))"/>
+                                        </td>
+                                        <td class="text-right">
+                                            <span t-field="labor_line.cost_price" t-options='{"widget": "monetary", "display_currency": doc.currency_id}'/>
+                                        </td>
+                                        <td class="text-right">
+                                            <span t-esc="'%02d:%02d' % (int(str(labor_line.actual_hour).split('.')[0]), int(float(str('%.2f' % labor_line.actual_hour).split('.')[1])/100*60))"/>
+                                        </td>
+                                        <td class="text-right">
+                                            <span t-esc="labor_line.total_cost" t-options='{"widget": "monetary", "display_currency": doc.currency_id}'/>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div t-if="doc.job_overhead_line_ids">
+                            <h3>Applied Overhead</h3>
+                            <table class="table table-sm o_main_table">
+                                <thead>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Job Type</th>
+                                        <th>Product</th>
+                                        <th>Description</th>
+                                        <th>Reference</th>
+                                        <th>Basis</th>
+                                        <th class="text-right">Quantity</th>
+                                        <th class="text-right">Cost / Unit</th>
+                                        <th class="text-right">Actual Purchased Quantity</th>
+                                        <th class="text-right">Actual Invoice Quantity</th>
+                                        <th class="text-right">Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr t-foreach="doc.job_overhead_line_ids" t-as="overhead_line">
+                                        <td>
+                                            <span t-field="overhead_line.date"/> 
+                                        </td>
+                                        <td>
+                                            <span t-field="overhead_line.job_type_id.name"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="overhead_line.product_id.name"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="overhead_line.description"/>
+                                        </td>
+                                        <td style="text-center">
+                                            <span t-field="overhead_line.reference"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="overhead_line.basis"/>
+                                        </td>
+                                        <td class="text-right">
+                                            <span t-field="overhead_line.product_qty"/>
+                                        </td>
+                                        <td class="text-right">
+                                            <span t-field="overhead_line.cost_price" t-options='{"widget": "monetary", "display_currency": doc.currency_id}'/>
+                                        </td>
+                                        <td class="text-right">
+                                            <span t-field="overhead_line.actual_quantity"/>
+                                        </td>
+                                        <td class="text-right">
+                                            <span t-field="overhead_line.actual_invoice_quantity"/>
+                                        </td>
+                                        <td class="text-right">
+                                            <span t-esc="overhead_line.total_cost" t-options='{"widget": "monetary", "display_currency": doc.currency_id}'/>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="row">
+                            <div class="col-8"/>
+                            <div class="col-4">
+                                <table class="table table-condensed table-bordered">
+                                    <tr class="border-black">
+                                        <td><strong>Total Material Cost</strong></td>
+                                        <td class="text-right">
+                                            <span t-esc="doc.material_total" t-options='{"widget": "monetary", "display_currency": doc.currency_id}'/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Total Labour Cost</strong></td>
+                                        <td class="text-right">
+                                            <span t-esc="doc.labor_total" t-options='{"widget": "monetary", "display_currency": doc.currency_id}'/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Total Overhead Cost</strong></td>
+                                        <td class="text-right">
+                                            <span t-esc="doc.overhead_total" t-options='{"widget": "monetary", "display_currency": doc.currency_id}'/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Total Cost</strong></td>
+                                        <td class="text-right">
+                                            <span t-esc="doc.jobcost_total" t-options='{"widget": "monetary", "display_currency": doc.currency_id}'/>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div t-if="doc.purchase_order_line_ids">
+                            <h3>Purchase Order Lines</h3>
+                            <table class="table table-condensed table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Order</th>
+                                        <th>Order Date</th>
+                                        <th>Description</th>
+                                        <th>Job Cost</th>
+                                        <th>Job Cost Line</th>
+                                        <th>Vendor</th>
+                                        <th>Product</th>
+                                        <th class="text-right">Quantity</th>
+                                        <th class="text-right">Unit Price</th>
+                                        <th class="text-right">Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr t-foreach="doc.purchase_order_line_ids" t-as="po_line">
+                                        <td>
+                                            <span t-field="po_line.order_id.name"/> 
+                                        </td>
+                                        <td>
+                                            <span t-field="po_line.date_order"/> 
+                                        </td>
+                                        <td>
+                                            <span t-field="po_line.name"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="po_line.job_cost_id.name"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="po_line.job_cost_line_id.description"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="po_line.partner_id.name"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="po_line.product_id.name"/>
+                                        </td>
+                                        <td class="text-right">
+                                            <span t-field="po_line.product_qty"/> <span t-field="po_line.product_uom"/>
+                                        </td>
+                                        <td class="text-right">
+                                            <span t-field="po_line.price_unit" t-options='{"widget": "monetary", "display_currency": doc.currency_id}'/>
+                                        </td>
+                                        <td class="text-right">
+                                            <span t-field="po_line.price_subtotal" t-options='{"widget": "monetary", "display_currency": doc.currency_id}'/>
+                                                <span t-field="po_line.price_total"/>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <div t-if="doc.timesheet_line_ids">
+                            <h3>Timesheet Lines</h3>
+                            <table class="table table-condensed table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>User</th>
+                                        <th>Description</th>
+                                        <th>Start Time</th>
+                                        <th>End Time</th>
+                                        <th>Job Cost</th>
+                                        <th>Job Cost Line</th>
+                                        <th>Project</th>
+                                        <th>Task</th>
+                                        <th>Duration</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr t-foreach="doc.timesheet_line_ids" t-as="timesheet_line">
+                                        <td>
+                                            <span t-field="timesheet_line.date"/> 
+                                        </td>
+                                        <td>
+                                            <span t-field="timesheet_line.user_id.name"/> 
+                                        </td>
+                                        <td>
+                                            <span t-field="timesheet_line.name"/>
+                                        </td>
+                                        <td>
+                                            <span t-esc="'%02d:%02d' % (int(str(timesheet_line.start_time).split('.')[0]), int(float(str('%.2f' % timesheet_line.start_time).split('.')[1])/100*60))"/>
+                                        </td>
+                                        <td>
+                                            <span t-esc="'%02d:%02d' % (int(str(timesheet_line.end_time).split('.')[0]), int(float(str('%.2f' % timesheet_line.end_time).split('.')[1])/100*60))"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="timesheet_line.job_cost_id.name"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="timesheet_line.job_cost_line_id.description"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="timesheet_line.project_id.name"/>
+                                        </td>
+                                        <td class="text-right">
+                                            <span t-field="timesheet_line.task_id.name"/>
+                                        </td>
+                                        <td class="text-right">
+                                            <span t-esc="'%02d:%02d' % (int(str(timesheet_line.unit_amount).split('.')[0]), int(float(str('%.2f' % timesheet_line.unit_amount).split('.')[1])/100*60))"/>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <div t-if="doc.account_invoice_line_ids">
+                            <h3>Vendors Invoice Lines</h3>
+                            <table class="table table-condensed table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Vendor</th>
+                                        <th>Description</th>
+                                        <th>Product</th>
+                                        <th>Job Cost</th>
+                                        <th>Job Cost Line</th>
+                                        <th>Account</th>
+                                        <th>Analytic Account</th>
+                                        <th class="text-right">Quantity</th>
+                                        <th class="text-right">Unit Price</th>
+                                        <th class="text-right">Discount</th>
+                                        <th class="text-right">Total Amount</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr t-foreach="doc.account_invoice_line_ids" t-as="invoice_line">
+                                        <td>
+                                            <span t-field="invoice_line.partner_id.name"/> 
+                                        </td>
+                                        <td>
+                                            <span t-field="invoice_line.name"/> 
+                                        </td>
+                                        <td>
+                                            <span t-field="invoice_line.product_id.name"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="invoice_line.job_cost_id.name"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="invoice_line.job_cost_line_id.description"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="invoice_line.account_id.name"/>
+                                        </td>
+                                        <td>
+<!--                                            <span t-field="invoice_line.account_analytic_id.name"/>-->
+                                            <span t-field="invoice_line.analytic_account_id.name"/>
+                                        </td>
+                                        <td class="text-right">
+                                            <span t-field="invoice_line.quantity"/><!--span t-field="invoice_line.uom_id.name"/-->
+                                            <span t-field="invoice_line.product_uom_id.name"/>
+                                        </td>
+                                        <td class="text-right">
+                                            <span t-field="invoice_line.price_unit"/>
+                                        </td>
+                                        <td class="text-right">
+                                            <span t-field="invoice_line.discount"/>
+                                        </td>
+                                        <td class="text-right">
+                                            <span t-field="invoice_line.price_subtotal"/>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    </data>
+</odoo>

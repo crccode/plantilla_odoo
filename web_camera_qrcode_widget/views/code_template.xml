@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="assets_backend" name="web_qr_code assets" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+            <!-- <script type="text/javascript" src="/web_camera_qrcode_widget/static/lib/instascan/instascan.min.js"/> -->
+            <script type="text/javascript" src="/web_camera_qrcode_widget/static/src/js/widget/qr_code.js"/>
+            <link rel="stylesheet" type="text/scss" href="/web_camera_qrcode_widget/static/src/scss/qr.scss"/>
+        </xpath>
+    </template>
+</odoo>

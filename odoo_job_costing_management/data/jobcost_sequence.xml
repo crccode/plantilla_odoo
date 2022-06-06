@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data noupdate="1">
+        <record id="jobcosting_seq" model="ir.sequence">
+            <field name="name">Job Costing Sequence</field>
+            <field name="code">job.costing</field>
+            <field name="prefix">COST-SHEET/%(y)s/</field>
+            <field name="padding">3</field>
+        </record>
+        
+        <record id="joborder_seq" model = "ir.sequence">
+            <field name="name">Joborder Sequence</field>
+            <field name="code">project.task</field>
+            <field name="prefix">JOB/%(y)s/</field>
+            <field name="padding">3</field>
+        </record>
+    </data>
+
+</odoo>

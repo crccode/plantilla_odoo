@@ -1,0 +1,44 @@
+<odoo>
+    <data>
+    
+    <record id="view_purchase_requistion_form" model="ir.ui.view">
+            <field name="name">Purchase Order Wizard</field>
+            <field name="model">purchase.order.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Create Purchase Order">
+                    <p>This Wizard will Create Purchase Order for Selected Vendors / Suppliers.</p>
+                    <notebook>
+                        <page string="Vendors / Suppliers">
+                            <field name="supplier_ids" domain="[('supplier','=',True)]"></field>
+                        </page>
+                        <page string="Select Products">
+                            <field name="product_line_ids" nolabel="1">
+                                <tree editable="bottom">
+                                    <field name="product_id"/>
+                                    <field name="quantity"/>
+                                    <field name="qty_available" readonly="1"/>
+                                    <field name="product_uom"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                    <footer>
+                        <button name="create_purchase_requistion"  type="object"  string="Create" default_focus="1" class="btn-primary"/>
+                        <button string="_Cancel" class="btn-default" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+    </record>
+
+    <record id="action_purchase_requistion" model="ir.actions.act_window">
+            <field name="name">Purchase Order Wizard</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">purchase.order.wizard</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_purchase_requistion_form"/>
+            <field name="target">new</field>
+    </record>
+    
+    </data>
+</odoo>

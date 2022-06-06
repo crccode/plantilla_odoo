@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+	<data>
+
+		<template id="journal_entry_template_report_view">
+			 <t t-set="o" t-value="o.with_context({'lang':o.partner_id.lang})"/>
+			<t t-call="web.external_layout">
+               
+                <div class="page">
+                    <!--<br/>
+                    <div class="oe_structure"/>
+                        <div>
+                            <h3 class="text-center mb32">
+                                <strong>Journal Entry</strong>
+                            </h3>
+                        </div>
+                    <br/>
+-->
+                <div class="row" style="font-size: 12px" id="journal_information">
+                    <div class="col-6">
+                       <h4><span t-field="o.company_id"/></h4>
+                        <div>
+                            <span t-field="o.company_id.street"/>
+                            <br/>
+                            <span t-field="o.company_id.street2"/>
+                            <br/>
+                            Telf: <span t-field="o.company_id.phone"/>
+                            <br/>
+                            NIT: <span t-field="o.company_id.vat"/>
+                            <br/>
+                            
+                        </div>   
+
+                        
+                    </div>  
+                    
+                    <div class="col-6 text-right">
+                        <div>
+                          <h4><span><strong>COMPROBANTE DE TRASPASO</strong></span></h4>
+                        </div>
+                        <div>
+                            <strong>Journal Entry : </strong><span t-field="o.name"/>
+                        </div>
+                        <div class="text-right">
+                            <strong>Date : </strong><span t-field="o.date"/>
+                        </div>
+                        <div class="text-right">
+                            <strong>Journal : </strong> <span t-field="o.journal_id"/>
+                        </div>
+                        <div class="text-right">
+                            <strong>Reference : </strong><span t-field="o.ref"/>
+                        </div>
+                    </div>  
+                </div>
+                <br/>
+                <div class="text-center">
+                    <strong><span t-field="o.partner_id"/> - <span t-field="o.name"/><t t-if="o.partner_id.ref"> - <span t-field="o.partner_id.ref"/> </t> </strong>
+                </div>
+				<div style="height:220mm">
+					<table style="border-collapse: collapse;width: 100%; font-size: 12px " class="table table-condensed ">
+                    <thead>
+                        <tr>
+                           
+                            <th>Account</th>
+                            <th>Partner</th>
+                            <th>Detalle</th>
+                            <!--<th>Label</th>-->
+                            <!--<th>Due Date</th> -->
+                            <!--<th>Analytic Account</th>-->
+                            <!--<th>Taxes(%)</th>-->
+                            <th class="text-right">Debit</th>
+                            <th class="text-right">Credit</th>
+                        </tr>
+                    </thead>  
+                    <tbody class="consumed_tbody">
+                        <t t-set="total" t-value="0.0"/>
+                        <t t-set="total1" t-value="0.0"/>
+                        <t t-foreach="o.line_ids" t-as="line">    
+                        <tr>
+                            
+                            <td>
+                                <span t-field="line.account_id"/>
+                            </td>
+                            <td>
+                                <span t-field="line.partner_id"/>
+                            </td>
+                            <td>
+                                <span t-field="line.name"/>
+                            </td>
+<!--                            <td>
+                                <span t-field="line.name"/>
+                            </td>-->
+                            <!--<td>
+                                <span t-field="line.date_maturity"/>
+                            </td>-->
+                            <!--<td>
+                                <span t-field="line.analytic_account_id"/>
+                            </td>-->
+                           <!-- <td>
+                                <span t-field="line.tax_ids"/>
+                            </td>-->
+                            <td class="text-right">
+                                <span t-field="line.debit"/>
+                            </td>
+                            <td class="text-right">
+                                <span t-field="line.credit"/>
+                            </td>
+                        </tr>
+                        <t t-set="total" t-value="total + line.debit"/>
+                        <t t-set="total1" t-value="total1 + line.credit"/>
+                        </t>
+                        <tr>
+                            <td/>
+                            <td/>
+                            <!--<td/>-->
+                            <!--<td/>-->
+                            <!--<td/>-->
+                            <td><strong>Total:</strong></td>
+                            <td width="10%"><strong>
+								<span t-esc="total" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                            </strong></td>
+                             <td width="10%"><strong>
+                                 <span t-esc="total1" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                            </strong></td>
+                      </tr>
+                    </tbody>
+                </table>
+                </div>
+				<br/>
+                <br/>
+                <br/>
+                <br/>
+                <div class="row" id="firmas">
+                   <div class="col-4 text-center">
+                      <strong>_____________________________________</strong>
+                      <br/>Contabilidad
+                      <br/><t t-esc="o.write_uid.name"/>
+                   </div>  
+                   <div class="col-4 text-center">
+                      <strong>_____________________________________</strong>
+                      <br/>Revisado
+                   </div>  
+                  <div class="col-4 text-center">
+                      <strong>_____________________________________</strong>
+                      <br/>Aprobado
+                  </div>  
+                </div>  
+                </div>
+                <br/>
+                Impreso:  <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%d/%m/%Y %H:%M')"></span> por  <span t-esc="user.name"></span>
+            </t>
+		
+   
+
+		
+
+		
+
+		
+
+		
+		</template>
+
+		<template id="journal_entry_report_template_id">
+			<t t-call="web.html_container">
+				<t t-foreach="docs" t-as="o">
+					<t t-call="bi_print_journal_entries.journal_entry_template_report_view"  t-lang="o.partner_id.lang"/>
+				</t>
+			</t>
+		</template>
+
+	</data>
+</odoo>

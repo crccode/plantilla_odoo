@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="asset_mro_equipment_checklist_form" model="ir.ui.view">
+            <field name="name">equipment.checklist.form.view</field>
+            <field name="model">equipment.checklist</field>
+            <field name="arch" type="xml">
+                <form>
+                     <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="note"/>
+                        </group>
+                     </group>
+                </form>
+            </field>
+        </record>
+        
+        <record id="asset_mro_equipment_checklist_tree" model="ir.ui.view">
+            <field name="name">equipment.checklist.tree</field>
+            <field name="model">equipment.checklist</field>
+            <field name="arch" type="xml">
+                 <tree>
+                    <field name="name"/>
+                    <field name="note"/>
+                 </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_equipment_checklist">
+            <field name="name">Equipment Checklists</field>
+            <field name="res_model">equipment.checklist</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_type">form</field>
+        </record>
+
+        <menuitem id="menu_equipment_checklist" name="Maintenance Checklists" parent="maintenance.menu_maintenance_configuration" action="action_equipment_checklist"/>
+
+           </data>
+        </odoo>

@@ -1,0 +1,11 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+access_pwa_manifest_user,access_pwa_manifest_user,model_pwa_manifest,base.group_user,1,0,0,0
+access_pwa_manifest_manager,access_pwa_manifest_manager,model_pwa_manifest,base.group_erp_manager,1,1,1,1
+
+access_pwa_icon_public,access_pwa_icon_public,model_pwa_icon,,1,0,0,0
+access_pwa_icon_user,access_pwa_icon_user,model_pwa_icon,base.group_user,1,0,0,0
+access_pwa_icon_manager,access_pwa_icon_manager,model_pwa_icon,base.group_erp_manager,1,1,1,1
+
+access_pwa_category_user,access_pwa_category_user,model_pwa_category,base.group_user,1,0,0,0
+access_pwa_category_manager,access_pwa_category_manager,model_pwa_category,base.group_erp_manager,1,1,1,1

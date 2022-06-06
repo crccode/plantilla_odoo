@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="pwa_category_books" model="pwa.category">
+            <field name="name">books</field>
+        </record>
+        <record id="pwa_category_business" model="pwa.category">
+            <field name="name">business</field>
+        </record>
+        <record id="pwa_category_education" model="pwa.category">
+            <field name="name">education</field>
+        </record>
+        <record id="pwa_category_entertainment" model="pwa.category">
+            <field name="name">entertainment</field>
+        </record>
+        <record id="pwa_category_finance" model="pwa.category">
+            <field name="name">finance</field>
+        </record>
+        <record id="pwa_category_fitness" model="pwa.category">
+            <field name="name">fitness</field>
+        </record>
+        <record id="pwa_category_food" model="pwa.category">
+            <field name="name">food</field>
+        </record>
+        <record id="pwa_category_games" model="pwa.category">
+            <field name="name">games</field>
+        </record>
+        <record id="pwa_category_government" model="pwa.category">
+            <field name="name">government</field>
+        </record>
+        <record id="pwa_category_health" model="pwa.category">
+            <field name="name">health</field>
+        </record>
+        <record id="pwa_category_kids" model="pwa.category">
+            <field name="name">kids</field>
+        </record>
+        <record id="pwa_category_lifestyle" model="pwa.category">
+            <field name="name">lifestyle</field>
+        </record>
+        <record id="pwa_category_magazines" model="pwa.category">
+            <field name="name">magazines</field>
+        </record>
+        <record id="pwa_category_medical" model="pwa.category">
+            <field name="name">medical</field>
+        </record>
+        <record id="pwa_category_music" model="pwa.category">
+            <field name="name">music</field>
+        </record>
+        <record id="pwa_category_navigation" model="pwa.category">
+            <field name="name">navigation</field>
+        </record>
+        <record id="pwa_category_news" model="pwa.category">
+            <field name="name">news</field>
+        </record>
+        <record id="pwa_category_personalization" model="pwa.category">
+            <field name="name">personalization</field>
+        </record>
+        <record id="pwa_category_photo" model="pwa.category">
+            <field name="name">photo</field>
+        </record>
+        <record id="pwa_category_politics" model="pwa.category">
+            <field name="name">politics</field>
+        </record>
+        <record id="pwa_category_productivity" model="pwa.category">
+            <field name="name">productivity</field>
+        </record>
+        <record id="pwa_category_security" model="pwa.category">
+            <field name="name">security</field>
+        </record>
+        <record id="pwa_category_shopping" model="pwa.category">
+            <field name="name">shopping</field>
+        </record>
+        <record id="pwa_category_social" model="pwa.category">
+            <field name="name">social</field>
+        </record>
+        <record id="pwa_category_sports" model="pwa.category">
+            <field name="name">sports</field>
+        </record>
+        <record id="pwa_category_travel" model="pwa.category">
+            <field name="name">travel</field>
+        </record>
+        <record id="pwa_category_utilities" model="pwa.category">
+            <field name="name">utilities</field>
+        </record>
+        <record id="pwa_category_weather" model="pwa.category">
+            <field name="name">weather</field>
+        </record>
+    </data>
+</odoo>

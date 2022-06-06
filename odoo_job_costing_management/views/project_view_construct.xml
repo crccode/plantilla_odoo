@@ -1,0 +1,88 @@
+<odoo>
+    <data>
+    
+    <record id="edit_project_inherit_construction" model="ir.ui.view">
+        <field name="name">project.project.form</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project.edit_project"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form/sheet/notebook" position="inside">
+                <page name="construction_sites" string="Construction Site Detail">
+                    <group>
+                        <group>
+                            <field name="type_of_construction"/>
+                            <field name="location_id" context="{'search_default_customer':1, 'show_address': 1}" options='{"always_reload": True}'/>
+                        </group>
+                        <group>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+            <xpath expr="//form/sheet/div[@name='button_box']" position="inside">
+                 <button class="oe_stat_button" type="object" icon="fa-tasks" name="view_notes">
+                        <field string="Notes" name="notes_count" widget="statinfo" options="{'label_field': 'label_notes'}"/>
+                 </button>
+            </xpath>
+        </field>
+    </record>
+    
+    <record id="action_view_task_subtask" model="ir.actions.act_window">
+            <field name="name">Tasks</field>
+            <field name="res_model">project.task</field>
+            <field name="view_mode">kanban,tree,form,calendar,pivot,graph</field>
+            <field name="search_view_id" ref="project.view_task_search_form"/>
+            <field name="help" type="html">
+                <p>
+                    Odoo's project management allows you to manage the pipeline of your tasks efficiently. You can track progress, discuss on tasks, attach documents, etc.
+                </p>
+            </field>
+    </record>
+    
+    <record id="open_view_task_list_kanban_subtask" model="ir.actions.act_window.view">
+        <field name="sequence" eval="0"/>
+        <field name="view_mode">kanban</field>
+        <field name="act_window_id" ref="action_view_task_subtask"/>
+    </record>
+    
+    <record id="open_view_task_list_tree_subtask" model="ir.actions.act_window.view">
+        <field name="sequence" eval="1"/>
+        <field name="view_mode">tree</field>
+        <field name="act_window_id" ref="action_view_task_subtask"/>
+    </record>
+    
+    <record model="ir.ui.view" id="view_task_form2_inherit_subtask">
+        <field name="name">project.task.view</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_form2"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form/header/field[@name='stage_id']" position="before">
+                 <button string="Create Subtasks" type="action" name="%(action_proejct_subtask_user_wizard)d"
+                         class="oe_highlight" groups="project.group_project_manager" />
+             </xpath>
+             <xpath expr="//form/sheet/notebook/page[2]" position="after">
+                 <page name="subtasks" string="Subtasks">
+                     <field name="child_task_ids" readonly="True" />
+                 </page>
+             </xpath>
+             <field name="user_id" position="after">
+                 <field name="parent_task_id" invisible="1"/>
+            </field>
+        </field>
+     </record>
+     
+     <record model="ir.ui.view" id="view_task_search_form_inherit_parenttask">
+        <field name="name">project.task.view</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_search_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//search" position="inside">
+                 <field name="parent_task_id"/>
+             </xpath>
+             <xpath expr="//search/group" position="inside">
+                 <filter string="Parent Task" name="parent_task" context="{'group_by':'parent_task_id'}"/>
+             </xpath>
+        </field>
+     </record>
+    
+    </data>
+</odoo>

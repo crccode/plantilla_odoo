@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+
+        <record id="website_job_workorder_request_partner_form" model="ir.ui.view">
+            <field name="name">Project Task form</field>
+            <field name="model">project.task</field>
+            <field name="inherit_id" ref="project.view_task_form2"/>
+            <field name="arch" type="xml">
+                <xpath expr="//h1" position="before">
+                    <!-- <div class="oe_title pr-0"> -->
+                        <h1 class="d-flex flex-row justify-content-between">
+                            <field name="custom_wo_number"/>
+                        </h1>
+                    <!-- </div> -->
+                </xpath>
+                <xpath expr="//form/sheet" position="before">
+                    <header>
+                        <button name="custom_wo_send_joborder" type="object" string="Send by Email" class="btn-primary"/>
+                    </header>
+                </xpath>
+                <xpath expr="//page[2]" position="after">
+                    <page name='website' string='Website'>
+                    <group>
+                        <group>
+                        <field name="custom_wo_job_partner_id"/>
+                        <field name="custom_wo_job_partner_name"/>
+                        <field name="custom_wo_job_partner_email"/>
+                        <field name="custom_wo_job_partner_phone"/>
+<!--                        <field name="custom_wo_job_category"/>-->
+                        <field name="custom_wo_job_category_id"/>
+                        <field name='custom_wo_is_job_order'/>
+                        </group>
+                    </group>
+                    </page>
+                </xpath>
+                <xpath expr="//page[3]" position="after">
+                    <page name='purchase requisition' string='Purchase Requisitions'>
+                        <field name="custom_wo_purchase_requisition_ids" readonly='True'>
+                            <tree>
+                                <field name="request_date"/>
+                                <field name="department_id"/>
+                                <field name="employee_id"/>
+                                <field name="approve_manager_id"/>
+                            </tree>
+                        </field>
+                    </page>
+                </xpath>
+                <xpath expr="//div[@name='button_box']" position="inside">
+                    <button class="oe_stat_button" type="object" name='custom_wo_show_purchase_requisition' icon="fa-shopping-cart">
+                        <field name="custom_wo_purchase_requisition_count" widget="statinfo"/>
+                    </button>
+                </xpath>
+            </field>
+          </record>
+
+    </data>
+ </odoo>

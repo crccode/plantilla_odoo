@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        
+        <template id="purchase_requisition_inherit_project" inherit_id="material_purchase_requisitions.purchase_requisition">
+           <xpath expr="//t/t/div/table[1]/tr[4]" position="after">
+               <tr style="border: 2px solid black;">
+                   <td><strong>Task / Job Order</strong></td><td> <span t-field="doc.task_id.name"/></td>
+                   <td><strong>Task / Job Order User</strong></td><td> <span t-field="doc.task_user_id.name"/></td>
+               </tr>
+               <tr style="border: 2px solid black;">
+                   <td><strong>Construction Project</strong></td><td> <span t-field="doc.project_id.name"/></td>
+                   <td></td><td></td>
+               </tr>
+           </xpath>
+         </template>
+        
+  </data>
+</odoo>

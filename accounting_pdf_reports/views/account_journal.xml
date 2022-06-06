@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <odoo>
+
+        <!-- Add instructor field to existing view-->	 
+        <record model="ir.ui.view" id="account_journal_accounting_pdf_reports_form_view">
+            <field name="name">journal.accounting_pdf_reports</field>
+            <field name="model">account.journal</field>
+            <field name="inherit_id" ref="account.view_account_journal_form"/>
+            <field name="arch" type="xml">
+                <field name="account_control_ids" position="after">
+					<field name="a" />
+				</field>	
+				
+            </field>
+			
+        </record>
+	
+</odoo>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates>
+    <t t-name="QRCode">
+        <t t-if="widget.mode === 'readonly'">
+            <span t-attf-class="#{widget.className}_sapn o_text_overflow"/>
+        </t>
+        <div t-attf-class="#{widget.className}" t-if="widget.mode === 'edit'">
+            <input type="text" 
+                t-attf-class="#{widget.className}_input"  
+                t-att-barcode_events="widget.nodeOptions.barcode_events"
+                t-att-tabindex="widget.attrs.tabindex"
+                t-att-autofocus="widget.attrs.autofocus"
+                t-att-placeholder="widget.attrs.placeholder"
+                t-att-id="widget.idForLabel"
+                t-att-name="widget.name"
+                t-att-readonly="widget.attrs.readonly"
+                t-att-maxlength="widget.field.size"
+            />
+            <button class="btn btn-sm btn-primary o_show_camera_button" accesskey="z" tabindex="-1">
+                <span class="fa fa-camera"/>
+            </button>               
+        </div>
+    </t>
+
+    <t t-name="QRCode.camera">
+        <div class="o_camera_widget_main">
+            <div class="o_camera_widget_browser_container ">
+                <div class="o_camera_widget_select row m-1 pb-1 border-bottom">
+                    <div class="col-lg-1 col-1 text-center o_camera_widget_camera_icon">
+                        <i class="fa fa-camera fa-lg"/>
+                    </div>
+                    <div class="col-lg-7 col-7 text-left">
+                        <select class="form-control link-style camera-select border"  name="cameras" id="camera-select"/>
+                    </div>
+                    <div class="col-lg-4 col-4 text-right o_camera_widget_control">
+                        <div class="btn-group" role="group">
+                            <button title="Start" class="btn btn-success btn-sm scancode_start" type="button" data-toggle="tooltip">
+                                <i class="fa fa-play"></i>
+                            </button>
+                            <button title="Stop" class="btn btn-danger btn-sm scancode_stop" type="button" data-toggle="tooltip">
+                                <i class="fa fa-stop"></i>
+                            </button>
+                            <button title="Show/Hide properties panel" class="btn btn-warning btn-sm show_or_hide_options_panel" type="button" data-toggle="collapse" href="#camera_widget_options" role="button" aria-expanded="false" aria-controls="camera_widget_options">
+                                <i class="fa fa-angle-double-down"></i> 
+                                <span>Show</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="o_camera_widget_options collapse" id="camera_widget_options">
+                    <div class="border m-2 p-2 row border">
+                        <div class="col-sm-6">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="flip_horizontal" />
+                                <label class="custom-control-label" for="flip_horizontal">Flip Horizontal</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="flip_vertical" />
+                                <label class="custom-control-label" for="flip_vertical">Flip Vertical</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="o_camera_widget_camera pb-1 border-bottom text-center ">
+                    <video id="scancode-video" ></video>
+                    <div class="scanner-laser laser-rightBottom" style="opacity: 0.5;"></div>
+                    <div class="scanner-laser laser-rightTop" style="opacity: 0.5;"></div>
+                    <div class="scanner-laser laser-leftBottom" style="opacity: 0.5;"></div>
+                    <div class="scanner-laser laser-leftTop" style="opacity: 0.5;"></div>
+                </div>
+
+            </div>
+            <div class="o_camera_widget_scan_result">
+                <pre><code id="scan_result" class="scan_result_value"></code></pre>               
+            </div>
+            
+        </div>
+    </t>
+    
+</templates>

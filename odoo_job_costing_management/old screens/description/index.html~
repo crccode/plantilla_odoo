@@ -1,0 +1,307 @@
+<section class="oe_container">
+   <div class="oe_row oe_spaced">
+           <h2 class="oe_slogan" style="color:olive;"><b>Project Job Costing (Contracting) and Job Cost Sheet</h2>
+           <p class="oe_mt32" style="color:olive;">
+This module allow you to manager any type of project/contracts with its job costing (contracting) and job cost sheets.
+        </p>
+<p style="color:CRIMSON;">
+Main Features:
+</p>
+<p style="color:olive;">
+- Allow you to create job cost sheets for your projects/contract.<br>
+- Allow you to have Project/Contract with Job orders.<br>
+- Allow you to create Project/Job Notes.<br>
+- Allow you to create Job Order Notes.<br>
+- Allow you to manage material requision for Job orders.<br>
+- Allow you to set BOQ for Jobs.<br>
+- Allow you to configure/setup Material, Labour and Overheads on jobs cost sheet where you can plan for your different jobs of your project/contract.<br>
+- Allow you to have multiple job cost sheet for single project/job/contract.<br>
+- PDF reports for Job Cost Sheet and Job Orders.<br>
+- Allow you to setup project/contract budgets based on analtic accounts.<br>
+- Job Types setup for different types of job you are doing for your customers.<br>
+- Custom job stages for your job orders.<br>
+- Allow you to manager jobs issues for your project/contract/jobs.<br>
+- Allow you to setup your subcontractors.<br>
+- Allow your employee/workers to fill timesheet based on job they are doing and allow to select job cost center on timesheet lines/activities.<br>
+- Materials Requisition / BOQ request and manage. This also allow on the fly creating purchase orders from Materials Requisition / BOQ.<br>
+- Unique sequence for job cost sheets.<br>
+- Create subtask/sub jor orders for main job order/task.<br>
+- Manage material planning and consumption per job order (Manually).<br>
+- Gives complete idea about your planned cost and actual cost since system allow you to setup planned amount for material, labours, overhead on job cost sheet and same time show actual amounts showing on cost sheet automatically. This actual amount is based on linking purchase order, vendor bills, timesheets where system allow you to select Job cost center and Cost line on Purchase order, Vendor bills and Timesheets.<br>
+- Main feature of this actual cost is that if you do not select Cost line on Purchase order, Vendor bills and Timesheets then system will crete/add new cost sheet line under that job cost center on confirmation of document.<br>
+- For more details: See Video in live preview<br>
+</p>
+
+<p style="color:CRIMSON;">
+Highlighted Steps:</p>
+<p style="color:green;">
+Create Project/Contract -> Create Job Orders -> Create Multiple Job Cost Sheets under Same Project -> Plan your materials, labour and overhead for each Jobs -> View of Planned and Actual Amount/Qty by each Cost Sheet Lines (Material, Labour and Overheads) -> Allow your purchase, accounting and HR department to select cost center (cost sheet) and cost center line (cost sheet line) to encode for expenses and labour works. -> Create Job Order Issues -> Create Material Requision Request -> Prepare Notes/ToDo lists for Projects and Jobs. -> .....
+</p>
+        <p style="color:CRIMSON;"><b>Menus Available:</b>
+            <ul style="color:olive;"><i>
+              <li>Jobs
+                <ul><li>Job Costs
+                        <ul><li>Job Cost Sheets</li></ul>
+                    </li>
+                    <li>Projects
+                        <ul><li>Projects</li>
+                            <li>Project Budgets</li>
+                            <li>Project Notes</li>
+                        </ul>
+                    </li>
+                    <li>Job Orders
+                        <ul>
+                            <li>Job Orders</li>
+                            <li>Job Notes</li>
+                            <li>Project Issues</li>
+                        </ul>
+                    </li>
+                    <li>Sub Contractors
+                        <ul>
+                            <li>Sub Contractors</li>
+                        </ul>
+                    </li>
+                    <li>Materials / BOQ
+                        <ul>
+                            <li>Materials</li>
+                            <li>Materials Requisition / BOQ</li>
+                        </ul>
+                    </li>
+                    <li>Configuration
+                        <ul>
+                            <li>Stages</li>
+                            <li>Job Types</li>
+                        </ul>
+                    </li>
+                    
+                </ul>
+              </li>
+             </ul></p>
+   </div>
+</section>
+<section class="oe_container">
+   <div class="oe_row oe_spaced">
+       <h3 class="oe_slogan"><b style="color:CRIMSON;">Create Project/Contract/Job</b></h3>
+<p> 
+       <div class="oe_demo oe_screenshot">
+           <img src="s1.png">
+       </div>
+   </div>
+</section>
+
+<section class="oe_container">
+   <div class="oe_row oe_spaced">
+       <h3 class="oe_slogan"><b style="color:CRIMSON;">Create Job Notes for Project/Contract/Job</b></h3>
+       <div class="oe_demo oe_screenshot">
+           <img src="s2.png">
+           <img src="s3.png">
+       </div>
+   </div>
+</section>
+
+<section class="oe_container">
+   <div class="oe_row oe_spaced">
+       <h3 class="oe_slogan"><b style="color:CRIMSON;">Creating Job orders for Project/Contract/Job</b></h3>
+       <center><h4 style="color:green;">Kanban View of Job Orders</h4></center>
+       <div class="oe_demo oe_screenshot">
+           <img src="s4.png">
+       </div>
+        <center><h4 style="color:green;">Job Order with Timesheet Tab</h4></center>
+       <div class="oe_demo oe_screenshot">
+           <img src="s5.png">
+       </div>
+       <center><h4 style="color:green;">Job Order with Material Plannings Tab</h4></center>
+       <div class="oe_demo oe_screenshot">
+           <img src="s6.png">
+       </div>
+       <center><h4 style="color:green;">Job Order with Consume Materials Tab</h4></center>
+       <div class="oe_demo oe_screenshot">
+           <img src="s7.png">
+       </div>
+       <center><h4 style="color:green;">Job Order with Material Requisitions Tab</h4></center>
+       <div class="oe_demo oe_screenshot">
+           <img src="s8.png">
+       </div>
+       <center><h4 style="color:green;">Job Order with Stock Moves Tab</h4></center>
+       <div class="oe_demo oe_screenshot">
+           <img src="s9.png">
+       </div>
+   </div>
+</section>
+
+<section class="oe_container">
+   <div class="oe_row oe_spaced">
+       <h3 class="oe_slogan"><b style="color:CRIMSON;">Materials/ BOQ Management</b></h3>
+       <center><h4 style="color:green;">Materials/Labour/Overhead Configuration for Project/Contract/Job</h4></center>
+       <div class="oe_demo oe_screenshot">
+           <img src="material.png">
+       </div>
+       <center><h4 style="color:green;">Materials Requisitions / BOQ for Project/Contract/Job</h4></center>
+       <div class="oe_demo oe_screenshot">
+           <img src="s10.png">
+           <img src="s11.png">
+       </div>
+   </div>
+</section>
+
+<section class="oe_container">
+   <div class="oe_row oe_spaced">
+       <h3 class="oe_slogan"><b style="color:CRIMSON;">Configuration of Job Types for Project/Contract/Job</b></h3>
+       <center><h4 style="color:green;">Job Types</h4></center>
+       <div class="oe_demo oe_screenshot">
+           <img src="job_type.png">
+       </div>
+   </div>
+</section>
+
+<section class="oe_container">
+   <div class="oe_row oe_spaced">
+       <h3 class="oe_slogan"><b style="color:CRIMSON;">Job Cost Sheet Preparation for Project/Contract/Job</b></h3>
+       <center><h4 style="color:green;">Job Cost Sheets with Material Tab</h4></center>
+       <div class="oe_demo oe_screenshot">
+           <img src="s12.png">
+       </div>
+       <center><h4 style="color:green;">Job Cost Sheets with Labour Tab</h4></center>
+       <div class="oe_demo oe_screenshot">
+           <img src="s14.png">
+       </div>
+       <center><h4 style="color:green;">Job Cost Sheets with Overheads Tab</h4></center>
+       <div class="oe_demo oe_screenshot">
+           <img src="s15.png">
+       </div>
+       <center><h4 style="color:green;">Job Cost Sheets Showing Total Cost of All Tabs</h4></center>
+       <div class="oe_demo oe_screenshot">
+           <img src="s13.png">
+       </div>
+   </div>
+</section>
+
+<section class="oe_container">
+   <div class="oe_row oe_spaced">
+       <h3 class="oe_slogan"><b style="color:CRIMSON;">Create Purchase Order for Project/Contract/Job</b></h3>
+       <center><h4 style="color:green;">Request for Quotation</h4></center>
+       <div class="oe_demo oe_screenshot">
+           <img src="s16.png">
+       </div>
+       <div class="oe_demo oe_screenshot">
+           <img src="s17.png">
+       </div>
+       <center><h4 style="color:green;">Create Purchase Order Line WITHOUT selecting Job Cost Line.</h4></center>
+       <div class="oe_demo oe_screenshot">
+           <img src="s18.png">
+       </div>
+       <center><h4 style="color:green;">After Confirm Purchase Order System will Add Job Cost Sheet Line Automatically</h4></center>
+       <div class="oe_demo oe_screenshot">
+           <img src="s19.png">
+       </div>
+       <center><h4 style="color:green;">Job Cost Sheet Showing Added Line</h4></center>
+        <p style="color:blue;"> If user select job cost line on Purchase order then system will not add new line but system will compute purchased quantity and show it to cost sheet.
+       <div class="oe_demo oe_screenshot">
+           <img src="s20.png">
+       </div>
+   </div>
+</section>
+
+<section class="oe_container">
+   <div class="oe_row oe_spaced">
+       <h3 class="oe_slogan"><b style="color:CRIMSON;">Vendor Bills allow You to Select Job Cost and Cost Line</b></h3>
+       <div class="oe_demo oe_screenshot">
+           <img src="vendor.png">
+       </div>
+       <div class="oe_demo oe_screenshot">
+           <img src="vendor_2.png">
+       </div>
+   </div>
+</section>
+
+<section class="oe_container">
+   <div class="oe_row oe_spaced">
+       <h3 class="oe_slogan"><b style="color:CRIMSON;">Timesheet Activities allow You to Select Job Cost and Cost Line</b></h3>
+       <div class="oe_demo oe_screenshot">
+           <img src="timesheet.png">
+       </div>
+   </div>
+</section>
+
+<section class="oe_container">
+   <div class="oe_row oe_spaced">
+       <h3 class="oe_slogan"><b style="color:CRIMSON;">Showing Actual Purchased Quantity, Actual Invoice Quantity</b></h3>
+       <div class="oe_demo oe_screenshot">
+           <img src="actual.png">
+           <img src="actual_hr.png">
+       </div>
+       <h3 class="oe_slogan"><b style="color:CRIMSON;">Showing Actual Hours On Labour Job Cost</b></h3>
+       <div class="oe_demo oe_screenshot">
+           <img src="actual_hr.png">
+       </div>
+   </div>
+</section>
+
+<section class="oe_container">
+   <div class="oe_row oe_spaced">
+       <h3 class="oe_slogan"><b style="color:CRIMSON;">Smart Button on Cost Sheet</b></h3>
+       <center><h4 style="color:green;">Show Purchase order lines, Timesheet Lines, and Account Invoice Line From Given Buttons.</h4></center>
+       <div class="oe_demo oe_screenshot">
+           <img src="s21.png">
+       </div>
+       <center><h4 style="color:green;">Related Purchase Order lines for Cost Sheet</h4></center>
+       <div class="oe_demo oe_screenshot">
+           <img src="s22.png">
+       </div>
+       
+       <center><h4 style="color:green;">Related Timesheet Lines for Cost Sheet</h4></center>
+       <div class="oe_demo oe_screenshot">
+           <img src="s23.png">
+       </div>
+       <center><h4 style="color:green;">Related Account Invoice Line for Cost Sheet</h4></center>
+       <div class="oe_demo oe_screenshot">
+           <img src="s24.png">
+       </div>
+   </div>
+</section>
+
+<section class="oe_container">
+   <div class="oe_row oe_spaced">
+       <h3 class="oe_slogan"><b style="color:CRIMSON;">Reports by System</b></h3>
+       <center><h4 style="color:olive;">Project/Contract/Job Report Sample</h4></center>
+       <div class="oe_demo oe_screenshot">
+           <img src="project_repo.png">
+       </div>
+       <center><h4 style="color:olive;">Job Order Report Sample</h4></center>
+       <div class="oe_demo oe_screenshot">
+           <img src="task_repo_1.png">
+           <img src="task_repo_2.png">
+           <img src="task_repo_3_1.png">
+           <img src="task_repo_3_2.png">
+       </div>
+       <center><h4 style="color:olive;">Job Cost Sheet Report Sample</h4></center>
+       <div class="oe_demo oe_screenshot">
+           <img src="job_cost_repo_1.png">
+           <img src="job_cost_repo_2.png">
+           <img src="job_cost_repo_2_1.png">
+           <img src="job_cost_3.png">
+           <img src="job_cost_4.png">
+       </div>
+   </div>
+</section>
+<section class="oe_container" >
+   <div class="oe_row oe_spaced">
+       <div class="oe_span6">
+           <div class="oe_picture" style="margin: 25px 10%;">
+               <a href="http://www.probuse.com/">
+                   <img src="logo.png">
+               </a>
+           </div>
+       </div>
+       <div class="oe_span6">
+           <p class="oe_mt32">
+               If you need any help or want more additional features,<br/> you may contact us through:<br/>
+               Email: <a href="contact@probuse.com">contact@probuse.com</a> <br/>
+               Website: <a href="http://www.probuse.com/" target='new'><u>www.probuse.com</u></a> <br/>
+               Skype: mustufa_probuse<br/>
+           </p>
+       </div>
+   </div>
+</section>
+
+

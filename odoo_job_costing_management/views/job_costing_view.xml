@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+    
+    <record model="ir.ui.view" id="job_costing_form_view">
+        <field name="name">Job.Costing.Form</field>
+        <field name="model">job.costing</field>
+        <field name="arch" type="xml">
+            <form string='Job Costing form'>
+                <header>
+                        <button name='action_draft' type="object" string='Reset to Draft' states='cancel'/>
+                        <button name="action_confirm" type="object" string="Confirm" states="draft" class="btn-primary"/>
+                        <button name="action_approve" type="object" string="Approve" states="confirm" class="btn-primary"/>
+                        <button name="action_done" type="object" string="Done" states="approve" class="btn-primary"/>
+                        <button name="action_cancel" type="object" string="Cancel" states="draft,confirm,approve"/>
+                        
+                            <field name="state" widget="statusbar" statusbar_visible="draft,confirm,approve,done"/>
+                    </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                            <button name="action_view_purchase_order_line"
+                                type="object"
+                                class="oe_stat_button"
+                                icon="fa-pencil-square-o">
+                                <field string="Purchase Order Lines" name="purchase_order_line_count" widget="statinfo"/>
+                            </button>
+                            <button name="action_view_hr_timesheet_line"
+                                type="object"
+                                class="oe_stat_button"
+                                icon="fa-book">
+                                <field string="HR Timesheet Lines" name="timesheet_line_count" widget="statinfo"/>
+                            </button>
+                            <button name="action_view_vendor_bill_line"
+                                type="object"
+                                class="oe_stat_button"
+                                icon="fa-bars">
+                                <field string="Vendor Invoice Lines" name="account_invoice_line_count" widget="statinfo"/>
+                            </button>
+                            <button name="action_view_jobcost_sheet_lines"
+                                type="object"
+                                class="oe_stat_button"
+                                icon="fa-pencil-square-o">
+                                <field string="Cost Lines" name="job_costsheet_line_count" widget="statinfo"/>
+                            </button>
+                    </div>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="number"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="name" attrs="{'readonly' : [('state','in',('approve','done','cancel'))]}"/>
+                            <field name="project_id" attrs="{'readonly' : [('state','in',('approve','done','cancel'))]}"/>
+                            <field name="analytic_id" attrs="{'readonly' : [('state','in',('approve','done','cancel'))]}"/>
+                            <field name="task_id" attrs="{'readonly' : [('state','in',('approve','done','cancel'))]}"/>
+<!--                          odoo11  <field name="issue_id" attrs="{'readonly' : [('state','in',('approve','done','cancel'))]}"/>-->
+                            <field name="partner_id" attrs="{'readonly' : [('state','in',('approve','done','cancel'))]}"/>
+                        </group>
+                        <group>
+                            <field name="start_date"/>
+                            <field name="complete_date"/>
+                            <field name="user_id"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                            <field name="currency_id" groups="base.group_multi_currency"/>
+                            <field name="description" attrs="{'readonly' : [('state','in',('approve','done','cancel'))]}"/>
+                            <field name="so_number" attrs="{'readonly' : [('state','in',('approve','done','cancel'))]}"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Materials" name="job_cost_material_page">
+                            <field name="job_cost_line_ids" nolabel="1" context="{'default_analytic_id':analytic_id,'default_job_type':'material'}" attrs="{'readonly' : [('state','in',('cancel'))]}">
+                                <tree editable="bottom">
+                                    <field name="date"/>
+                                    <field name="job_type" invisible="1"/>
+                                    <field name="job_type_id" invisible="1" domain="[('job_type','=',job_type)]"/>
+                                    <field name="product_id"/>
+                                    <field name="description" invisible="1"/>
+                                    <field name="reference"/>
+                                    <field name="product_qty" sum="Total"/>
+                                    <field name="uom_id"/>
+                                    <field name="cost_price" sum="Total"/>
+                                    <field name="actual_quantity" sum="Total"/>
+                                    <field name="actual_invoice_quantity" sum="Total"/>
+                                    <field name="total_cost" widget="monetary" sum="Total"/>
+                                    <field name="currency_id" invisible="1"/>
+                                    <field name="direct_id" invisible="1"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Labours" name="job_cost_labour_page" invisible="1">
+                            <field name="job_labour_line_ids" nolabel="1" context="{'default_analytic_id':analytic_id,'default_job_type':'labour'}" attrs="{'readonly' : [('state','in',('cancel'))]}">
+                                <tree editable="bottom">
+                                    <field name="date"/>
+                                    <field name="job_type" invisible="1"/>
+                                    <field name="job_type_id" domain="[('job_type','=',job_type)]"/>
+                                    <field name="product_id"/>
+                                    <field name="description"/>
+                                    <field name="reference"/>
+                                    <field name="hours" widget="float_time" sum="Total"/>
+                                    <field name="cost_price" sum="Total"/>
+                                    <field name="actual_hour" widget="float_time" sum="Total"/>
+                                    <field name="total_cost" widget="monetary" sum="Total"/>
+                                    <field name="currency_id" invisible="1"/>
+                                    <field name="direct_id" invisible="1"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Overhead" name="job_cost_overhead_page" invisible="1">
+                            <field name="job_overhead_line_ids" nolabel="1" context="{'default_analytic_id':analytic_id,'default_job_type':'overhead'}" attrs="{'readonly' : [('state','in',('cancel'))]}">
+                                <tree editable="bottom">
+                                    <field name="date"/>
+                                    <field name="job_type" invisible="1"/>
+                                    <field name="job_type_id" domain="[('job_type','=',job_type)]"/>
+                                    <field name="product_id"/>
+                                    <field name="description"/>
+                                    <field name="reference"/>
+                                    <field name="basis"/>
+                                    <field name="product_qty" sum="Total"/>
+                                    <field name="uom_id"/>
+                                    <field name="cost_price" sum="Total"/>
+                                    <field name="actual_quantity" sum="Total"/>
+                                    <field name="actual_invoice_quantity" sum="Total"/>
+                                    <field name="total_cost" widget="monetary" sum="Total"/>
+                                    <field name="currency_id" invisible="1"/>
+                                    <field name="direct_id" invisible="1"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                    <group>
+                     <group class="oe_subtotal_footer oe_right" colspan="2" name="jobcost_total">
+                            <field name="material_total" invisible="1" widget="monetary"/>
+                            <field name="labor_total" invisible="1" widget="monetary"/>
+                            <field name="overhead_total" invisible="1" widget="monetary"/>
+                            <field name="jobcost_total" widget="monetary"/>
+                     </group>
+                     <label for="notes_job"/>
+                     <field name="notes_job" class="oe_inline" nolabel="1" placeholder="Setup default Job Details or Technical contents."/>
+                        <div class="oe_clear"/>
+                     </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers" groups="base.group_user" />
+                    <field name="message_ids" widget="mail_thread" />
+                </div>
+            </form>
+        </field>
+    </record>
+    
+    <record id="job_costing_tree_view" model="ir.ui.view">
+        <field name="name">Job.Costing.List</field>
+        <field name="model">job.costing</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="number"/>
+                <field name="name"/>
+                <field name="project_id"/>
+                <field name="start_date"/>
+                <field name="complete_date"/>
+                <field name="jobcost_total" widget="monetary"/>
+                <field name="company_id" invisible='1' groups="base.group_multi_company"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+    
+    <record id="job_costing_search" model="ir.ui.view">
+            <field name="name">job_costing_search</field>
+            <field name="model">job.costing</field>
+            <field name="arch" type="xml">
+                <search string="Search Job Coasting">
+                    <field name="number"/>
+                    <field name="name"/>
+                    <field name="start_date"/>
+                    <field name="complete_date"/>
+                    <field name="project_id"/>
+                    <field name="partner_id"/>
+                    <field name="company_id" groups="base.group_multi_company"/>
+                    <field name="user_id"/>
+                    <field name="state"/>
+                   <!-- <filter string="Confirm Job Costing" domain="[('state','=','confirm')]"/>
+                    <filter string="Approved Job Costing" domain="[('state','=','approve')]"/>
+                    <filter string="Done Job Costing" domain="[('state','=','done')]"/>
+                    <filter string="Cancel Job Costing" domain="[('state','=','cancel')]"/>
+                    <group expand="0" string="Group By">
+                        <filter string="User" context="{'group_by':'user_id'}"/>
+                        <filter string="Customer" context="{'group_by':'partner_id'}"/>
+                        <filter string="Project" context="{'group_by':'project_id'}"/>
+                        <filter string="Start Date" context="{'group_by':'start_date'}"/>
+                        <filter string="Company" context="{'group_by':'company_id'}"/>
+                    </group>-->
+                    <filter string="Confirm Job Costing" name="confirm_state" domain="[('state','=','confirm')]"/>
+                    <filter string="Approved Job Costing" name="approved_jobcosting" domain="[('state','=','approve')]"/>
+                    <filter string="Done Job Costing" name="done_job_costing" domain="[('state','=','done')]"/>
+                    <filter string="Cancel Job Costing" name="cancel_job_costing" domain="[('state','=','cancel')]"/>
+                    <group expand="0" string="Group By">
+                        <filter string="User" name="user_id" context="{'group_by':'user_id'}"/>
+                        <filter string="Customer" name="customer" context="{'group_by':'partner_id'}"/>
+                        <filter string="Project" name="project" context="{'group_by':'project_id'}"/>
+                        <filter string="Start Date" name="start_date" context="{'group_by':'start_date'}"/>
+                        <filter string="Company" name="company" context="{'group_by':'company_id'}" groups="base.group_multi_company"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+    
+    
+    <record id="job_cost_line_tree_view" model="ir.ui.view">
+        <field name="name">Job.Cost.line.tree</field>
+        <field name="model">job.cost.line</field>
+        <field name="arch" type="xml">
+            <tree create="false" edit="0" delete="0">
+                <field name="date"/>
+                <field name="job_type" optional="hide"/>
+                <field name="product_id"/>
+                <field name="description" optional="hide"/>
+                <field name="reference"/>
+                <field name="job_type_id" domain="[('job_type','=',job_type)]"/>
+                <field name="basis" attrs="{'invisible':[('job_type','!=','overhead')]}" optional="hide"/>
+                <field name="product_qty" attrs="{'invisible':[('job_type','=','labour')]}"/>
+                <field name="uom_id" attrs="{'invisible':[('job_type','=','labour')]}" optional="hide"/>
+                <field name="actual_quantity"/>
+                <field name="actual_invoice_quantity" />
+                <field name="hours" attrs="{'invisible':[('job_type','!=','labour')]}"/>
+                <field name="actual_hour"/>
+                <field name="cost_price"/>
+                <field name="currency_id" invisible="1"/>
+                <field name="total_cost" widget="monetary"/>
+                <field name="direct_id" invisible="1"/>
+            </tree>
+        </field>
+    </record>
+    
+    <record model="ir.actions.act_window" id="action_job_costing">
+        <field name="name">Job Cost Sheets</field>
+        <field name="res_model">job.costing</field>
+<!--        <field name="view_type">form</field>-->
+        <field name="view_mode">tree,form</field>
+    </record>
+    
+    <record model="ir.actions.act_window" id="action_job_cost_line_custom">
+        <field name="name">Job Cost Sheet Lines</field>
+        <field name="res_model">job.cost.line</field>
+        <field name="context">{'group_by':'job_type'}</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    
+    </data>
+</odoo>
