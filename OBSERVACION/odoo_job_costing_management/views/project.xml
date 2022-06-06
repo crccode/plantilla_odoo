@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="job_cost_project_form_view" model="ir.ui.view">
+            <field name="name">project.inherited.form</field>
+            <field name="model">project.project</field>
+            <field name="inherit_id" ref="project.edit_project"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@name='button_box']" position="inside">
+                    <button name="project_to_jobcost_action" type="object" class="oe_stat_button" icon="fa-book">
+                    <field string="Jobcosts" name="job_cost_count" widget="statinfo"/>
+                    </button>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="job_cost_task_form_view" model="ir.ui.view">
+            <field name="name">project.task.inherited.form</field>
+            <field name="model">project.task</field>
+            <field name="inherit_id" ref="project.view_task_form2"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@name='button_box']" position="inside">
+                    <button name="task_to_jobcost_action" type="object" class="oe_stat_button" icon="fa-book">
+                    <field string="Jobcosts" name="job_cost_count" widget="statinfo"/>
+                    </button>
+                </xpath>
+            </field>
+        </record>
+
+<!--        odoo11-->
+<!--        <record model="ir.ui.view" id="job_cost_issue_form_view">-->
+<!--            <field name="name">project.issue.inherited.form</field>-->
+<!--            <field name="model">project.issue</field>-->
+<!--            <field name="inherit_id" ref="project_issue.project_issue_form_view"/>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <xpath expr="//div[@class='oe_button_box']" position="inside">-->
+<!--                    <button name="issue_to_jobcost_action" type="object" class="oe_stat_button" icon="fa-book">-->
+<!--                    <field string="Jobcosts" name="job_cost_count" widget="statinfo"/>-->
+<!--                    </button>-->
+<!--                </xpath>-->
+<!--            </field>-->
+<!--        </record>-->
+
+    </data>
+</odoo>

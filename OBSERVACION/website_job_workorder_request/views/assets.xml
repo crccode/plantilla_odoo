@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+
+<template id="assets_frontend_joborder" inherit_id="website.assets_frontend">
+    <xpath expr=".">
+        <script type="text/javascript" src="/website_job_workorder_request/static/src/js/website_portal_templet.js"/>
+    </xpath>
+</template>
+
+</odoo>

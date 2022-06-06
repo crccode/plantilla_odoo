@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="layout" inherit_id="web.layout">
+        <xpath expr="//head" position="inside">
+            <t t-set="pwa_manifest" t-value="request.env['pwa.manifest'].sudo().search([], limit=1)"/>
+            <t t-if="pwa_manifest">
+                <meta name="mobile-web-app-capable" content="yes"/>
+                <meta name="apple-mobile-web-app-capable" content="yes"/>
+                <link rel="manifest" t-attf-href="/pwa_manifest.json"/>
+                <meta name="apple-mobile-web-app-status-bar-style" t-att-content="pwa_manifest.theme_color"/>
+                <meta name="theme-color" t-att-content="pwa_manifest.theme_color"/>
+                <meta name="apple-mobile-web-app-title" t-att-content="pwa_manifest.name"/>
+                <t t-foreach="pwa_manifest.icons" t-as="icon">
+                    <link rel="apple-touch-icon" t-att-type="icon.type" t-att-sizes="icon.sizes" t-att-href="icon.url"/>
+                </t>
+            </t>
+        </xpath>
+    </template>
+    <template id="assets_backend" name="service worker assets" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/xf_pwa/static/src/js/pwa/manager.js"/>
+        </xpath>
+    </template>
+    <template id="assets_common" name="service worker register" inherit_id="web.assets_common">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/xf_pwa/static/src/js/pwa/register.js"/>
+        </xpath>
+    </template>
+</odoo>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="asset_mro_material_purchase_requisition_form" model="ir.ui.view">
+            <field name="name">material.purchase.requisition.form</field>
+            <field name="model">material.purchase.requisition</field>
+            <field name="inherit_id" ref="material_purchase_requisitions.material_purchase_requisition_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='requisiton_responsible_id']" position="after">
+                    <field name="maintenance_request_id"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

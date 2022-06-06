@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <odoo>
+        <record model="ir.ui.view" id="account_invoice_codigocontrol_form_view">
+            <field name="name">invoice.codigocontrol</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+                <field name="partner_id" position="after">
+					
+					<field name="nit" attrs="{'invisible': [('move_type', 'not in', ('out_invoice', 'out_refund', 'in_invoice', 'in_refund', 'out_receipt', 'in_receipt'))]}"/>
+					
+					<field name="razonsocial" attrs="{'invisible': [('move_type', 'not in', ('out_invoice', 'out_refund', 'in_invoice', 'in_refund', 'out_receipt', 'in_receipt'))]}"/>
+						
+					<field name="autorizacion" attrs="{'invisible': [('move_type', 'not in', ('in_invoice', 'in_refund', 'in_receipt'))]}"/>
+					
+					<field name="codigodecontrol" attrs="{'invisible': [('move_type', 'not in', ('in_invoice', 'in_refund', 'in_receipt'))]}"/>						
+					
+					<field name="limiteemision" invisible="1"/>
+					
+					<field name="totaltexto" invisible="1"/>
+								
+				</field>	
+				
+            </field>
+			
+        </record>
+
+        <record id="res_partner_form_view_inherit" model="ir.ui.view">
+            <field name="name">res.partner.form.view.inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='vat']" position="attributes">
+                    <attribute name="string">NIT</attribute>
+                </xpath>
+            </field>    
+            <field name="arch" type="xml">	
+                <field name="vat" position="after">
+                    <field name="razonsocial" />
+                </field>
+            </field>
+        </record>
+</odoo>

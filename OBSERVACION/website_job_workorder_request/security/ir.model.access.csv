@@ -1,0 +1,3 @@
+id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
+access_custom_job_order_category_employee,custom_job_order_category_employee,model_custom_job_order_category,,1,0,0,0
+access_custom_job_order_category_project_manager,custom_job_order_category_project_manager,model_custom_job_order_category,project.group_project_manager,1,1,1,1

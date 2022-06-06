@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+    <record id="open_view_project_job_all_config" model="ir.actions.act_window">
+            <field name="name">Projects</field>
+            <field name="res_model">project.project</field>
+            <field name="view_type">form</field>
+            <field name="domain">[]</field>
+            <field name="view_mode">kanban,form</field>
+            <field name="search_view_id" ref="project.view_project_project_filter"/>
+            <field name="context">{}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Create a new Construction project.
+                </p><p>
+                    Organize your activities (plan tasks, track issues, invoice timesheets) for internal, personal or customer construction projects.
+                </p>
+            </field>
+    </record>
+        
+   <record id="action_view_job_orders" model="ir.actions.act_window">
+        <field name="name">Job Orders</field>
+        <field name="res_model">project.task</field>
+        <field name="view_mode">kanban,tree,form,calendar,pivot,graph</field>
+        <field name="context">{'search_default_my_tasks': 1}</field>
+        <field name="search_view_id" ref="project.view_task_search_form"/>
+        <field name="help" type="html">
+            <p>
+                Odoo's Job Orders management allows you to manage the pipeline of your Jobs efficiently. You can track progress, discuss on jobs, attach documents, etc.
+            </p>
+        </field>
+    </record>
+    
+    
+    <record id="action_picking_tree_all_const" model="ir.actions.act_window">
+            <field name="name">Material Requisitions / BOQ</field>
+            <field name="res_model">stock.picking</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,kanban,form,calendar</field>
+            <field name="domain">[('picking_type_id.code','=','outgoing')]</field>
+            <field name="context">{
+                    'picking_type_id.code': 'outgoing',
+            }
+            </field>
+            <field name="search_view_id" ref="stock.view_picking_internal_search"/>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click here to create a new transfer.
+              </p><p>
+                You can either do it immediately or mark it as Todo for future processing. Use your scanner to validate the transferred quantity quicker.
+              </p>
+            </field>
+    </record>
+    
+    <record id="action_partner_contractor_form" model="ir.actions.act_window">
+        <field name="name">Contractors</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_type">form</field>
+        <field name="domain">[]</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="context">{'search_default_supplier': 1,'default_customer': 0,'default_supplier': 1}</field>
+        <field name="filter" eval="True"/>
+        <field name="help" type="html">
+          <p class="oe_view_nocontent_create">
+            Click to add a contact in your address book.
+          </p><p>
+            Odoo helps you easily track all activities related to
+            a supplier: discussions, history of purchases,
+            documents, etc.
+          </p>
+        </field>
+    </record>
+    
+<!--    <record id="action_job_issue_project" model="ir.actions.act_window">-->
+<!--            <field name="name">Issues</field>-->
+<!--            <field name="res_model">project.issue</field>-->
+<!--            <field name="view_type">form</field>-->
+<!--            <field name="view_mode">kanban,tree,calendar,form,pivot,graph</field>-->
+<!--            <field name="view_id" eval="False"/>-->
+<!--            <field name="domain" eval=""/>-->
+<!--            <field name="context">{'search_default_my_issues': 1}</field>-->
+<!--            <field name="search_view_id" ref="project_issue.view_project_issue_filter"/>-->
+<!--            <field name="view_ids"-->
+<!--                   eval="[(5, 0, 0),-->
+<!--                          (0, 0, {'view_mode': 'kanban', 'view_id': ref('project_issue.project_issue_view_kanban_inherit_no_group_create')}),-->
+<!--                          (0, 0, {'view_mode': 'tree', 'view_id': ref('project_issue.project_issue_tree_view')}),-->
+<!--                          (0, 0, {'view_mode': 'calendar', 'view_id': ref('project_issue.project_issue_calendar_view')}),-->
+<!--                          (0, 0, {'view_mode': 'form', 'view_id': ref('project_issue.project_issue_form_view')}),-->
+<!--                          (0, 0, {'view_mode': 'graph', 'view_id': ref('project_issue.project_issue_graph_view')}), -->
+<!--                          ]"/>-->
+<!--            <field name="help" type="html">-->
+<!--                <p>-->
+<!--                    The Odoo issues tracker allows you to efficiently manage things-->
+<!--                    like internal requests, software development bugs, customer-->
+<!--                    complaints, project troubles, material breakdowns, etc.-->
+<!--                </p>-->
+<!--            </field>-->
+<!--        </record>-->
+    <record model="ir.actions.act_window" id="action_material_purchase_requisition_job_costing">
+        <field name="name">Material Requisitions/ BOQ</field>
+        <field name="res_model">purchase.requisition</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    
+    <menuitem id="menu_job_managmt" name="Jobs" groups="project.group_project_user"/>
+    <menuitem id="menu_job_cost_managmt" parent="menu_job_managmt" name="Job Costs" sequence="1" groups="project.group_project_manager"/>
+    <menuitem id="menu_sub_job_costing" parent="menu_job_cost_managmt" name="Job Cost Sheets" action="action_job_costing" sequence="1"/>
+    
+    <menuitem id="menu_job_cost_project" parent="menu_job_managmt" name="Projects" sequence="2"/>
+    <menuitem id="menu_job_projects" name="Projects" parent="menu_job_cost_project" action="open_view_project_job_all_config" sequence="1" />
+    <menuitem id="menu_job_cost_budget" name="Project Budgets" parent="menu_job_cost_project" action="account_budget.act_crossovered_budget_view" sequence="2" />
+    
+    <menuitem id="menu_job_cost_orders" parent="menu_job_managmt" name="Job Orders" sequence="3"/>
+    <menuitem id="menu_job_cost_order" name="Job Orders" parent="menu_job_cost_orders" action="action_view_job_orders" sequence="1" />
+<!--    <menuitem id="menu_item_job_cost_issue" name="Project Issues" parent="menu_job_cost_orders" action="action_job_issue_project" sequence="3"/>-->
+    
+    <menuitem id="job_cost_sub_contractors" parent="menu_job_managmt" name="Sub Contractors " sequence="4"/>
+    <menuitem id="menu_item_contractors" name="Sub Contractors" parent="job_cost_sub_contractors" action="action_partner_contractor_form" sequence="7"/>
+    
+    <menuitem id="menu_materials" parent="menu_job_managmt" name="Materials / BOQ " sequence="5"/>
+    <menuitem id="menu_job_cost_material" name="Materials" parent="menu_materials" action="product.product_normal_action" sequence="1" />
+<!--    <menuitem id="menu_job_cost_mat_req" name="Material Requisitions/ BOQ" parent="menu_materials" action="action_picking_tree_all_const" sequence="2" /-->
+    <menuitem id="menu_job_cost_mat_req" name="Material Requisitions/ BOQ" parent="menu_materials" action="action_material_purchase_requisition_job_costing" sequence="2" />
+    
+    <menuitem id="menu_job_cost_configuration" parent="menu_job_managmt" name="Configuration" groups="project.group_project_manager" sequence="6"/>
+    <menuitem id="menu_stages" name="Stages" parent="menu_job_cost_configuration" action="project.open_task_type_form" sequence="1"/>
+    <menuitem id="menu_job_type" parent="menu_job_cost_configuration" name="Job Types" action="action_job_type" sequence="2"/>
+    
+    </data>
+</odoo>

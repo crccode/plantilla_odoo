@@ -1,0 +1,57 @@
+<odoo>
+    <data>
+    
+    <record id="view_task_form2_inherit_picking" model="ir.ui.view">
+        <field name="name">project.task.form</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_form2"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form/sheet/notebook/page[@name='description_page']" position="after">
+                <page string="Material Plannings" name="job_cost_task_material">
+                    <field name="material_plan_ids" nolabel="1">
+                        <tree editable="bottom">
+                            <field name="product_id"/>
+                            <field name="description"/>
+                            <field name="product_uom_qty"/>
+                            <field name="product_uom"/>
+                        </tree>
+                    </field>
+                </page>
+                <page string="Consumed Materials" name="job_cost_task_consume_material">
+                    <field name="consumed_material_ids" nolabel="1">
+                        <tree editable="bottom">
+                            <field name="product_id"/>
+                            <field name="description"/>
+                            <field name="product_uom_qty"/>
+                            <field name="product_uom"/>
+                        </tree>
+                    </field>
+                </page>
+                <page name="pickings" string="Material Requisitions" >
+                    <field name="picking_ids"  readonly="1" />
+                </page>
+                <!--
+                <page name="stock_moves" string="Stock Moves" >
+                    <field name="move_ids"/>
+                </page>-->
+            </xpath>
+            <xpath expr="//div[@name='button_box']" position="inside">
+                    <button class="oe_stat_button" string="Stock Moves" name="view_stock_moves" type="object" icon="fa-navicon">
+<!--                        <field name="stock_moves_count" widget="statinfo" options="{'label_field': 'label_notes'}"/-->
+                    </button>
+            </xpath>
+            <field name="user_id" position="after">
+<!--                <field name="date_start"/>-->
+                <field name="date_end"/>
+                <field name="job_number"/>
+            </field>
+            <xpath expr="//form/sheet/div[@name='button_box']" position="inside">
+                 <button class="oe_stat_button" type="object" icon="fa-tasks" name="view_notes">
+                        <field string="Notes" name="notes_count" widget="statinfo" options="{'label_field': 'label_notes'}"/>
+                 </button>
+           </xpath>
+        </field>
+    </record>
+    
+    </data>
+</odoo>

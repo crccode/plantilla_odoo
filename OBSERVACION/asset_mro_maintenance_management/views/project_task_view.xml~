@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="asset_mro_maintenance_request_task_form" model="ir.ui.view">
+            <field name="name">project.task.form</field>
+            <field name="model">project.task</field>
+            <field name="inherit_id" ref="project.view_task_form2"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='date_last_stage_update']" position="after">
+                    <field name="maintenance_request_id"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

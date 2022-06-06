@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        
+        <template id="task_report_id">
+          <t t-foreach="docs" t-as="doc">
+            <t t-call="web.internal_layout"> <!--odoo11-->
+                 <div class="page">
+                     <div>
+                         <h3>
+                             <strong><span t-field="doc.name"/>( <span t-field="doc.stage_id.name"/> )</strong> 
+                         </h3>
+                         <table class="table table-responsive" name="table_1">
+                            <tr>
+                                <th>Project </th>
+                                <th>Customer </th>
+                                <th>Assigned To </th>
+                                <th>Assigning Date </th>
+                                <th>Deadline</th>
+                            </tr>
+                            <tr>
+                                <td><span t-field="doc.project_id.name"/></td>
+                                <td><span t-field="doc.partner_id.name"/></td>
+                                <td><span t-field="doc.user_id.name"/></td>
+                                <td><span t-field="doc.date_assign"/></td>
+                                <td><span t-field="doc.date_deadline"/></td>
+                            </tr>
+                         </table>
+                         <t t-if="doc.timesheet_ids">
+                             <h3>Timesheet</h3>
+                             <table class="table table-responsive" name="table_2">
+                                <tr>
+                                    <th>Date </th>
+                                    <th>User </th>
+                                    <th>Description </th>
+                                    <th>Analytic Account</th>
+                                    <th>Duration</th>
+                                </tr>
+                                <t t-foreach="doc.timesheet_ids" t-as="time">
+                                    <tr>
+                                        <td><span t-field="time.date"/></td>
+                                        <td><span t-field="time.user_id.name"/></td>
+                                        <td><span t-field="time.name"/></td>
+                                        <td><span t-field="time.account_id.name"/></td>
+                                        <td><span t-field="time.unit_amount" /></td>
+                                    </tr>
+                                </t>
+                             </table>
+                             <div class="row">
+                                 <div class="col-xs-10 text-right">
+                                     <span>Initially Planned Hours :</span><br/>
+                                     <span>Effective Hours :</span><br/>
+                                     <span>Remaining Hours :</span><br/>
+                                 </div>
+                                 <div class="col-xs-2 text-right">
+                                     <span t-field="doc.planned_hours"/><br/>
+                                     <span t-field="doc.effective_hours"/><br/>
+                                     <span t-field="doc.remaining_hours"/><br/>
+                                 </div>
+                             </div>
+                         </t>
+                         <t t-if="doc.child_task_ids">
+                             <h3>Subtasks</h3>
+                             <table class="table table-responsive" name="table_3">
+                                <tr>
+                                    <th>Task Title</th>
+                                    <th>Project</th>
+                                    <th>Assigned To</th>
+                                    <th>Intially Planned Hours</th>
+                                    <th>Remaining Hours</th>
+                                    <th>Stage</th>
+                                </tr>
+                                <t t-foreach="doc.child_task_ids" t-as="subtask">
+                                    <tr>
+                                        <td><span t-field="subtask.name"/></td>
+                                        <td><span t-field="subtask.project_id.name"/></td>
+                                        <td><span t-field="subtask.user_id.name"/></td>
+                                        <td><span t-field="subtask.planned_hours"/></td>
+                                        <td><span t-field="subtask.planned_hours" /></td>
+                                        <td><span t-field="subtask.stage_id.name" /></td>
+                                    </tr>
+                                </t>
+                             </table>
+                         </t>
+                         <t t-if="doc.material_plan_ids">
+                             <h3>Material Plannings</h3>
+                             <table class="table table-responsive" name="table_4">
+                                <tr>
+                                    <th>Product </th>
+                                    <th>Description </th>
+                                    <th class="text-right">Quantity</th>
+                                    <th>Unit of Measure</th>
+                                </tr>
+                                <t t-foreach="doc.material_plan_ids" t-as="plan">
+                                    <tr>
+                                        <td><span t-field="plan.product_id.name"/></td>
+                                        <td><span t-field="plan.description"/></td>
+                                        <td class="text-right"><span t-field="plan.product_uom_qty"/></td>
+                                        <td><span t-field="plan.product_uom.name"/></td>
+                                    </tr>
+                                </t>
+                             </table>
+                         </t>
+                         <t t-if="doc.consumed_material_ids">
+                             <h3>Consumed Materials</h3>
+                             <table class="table table-responsive" name="table_5">
+                                <tr>
+                                    <th>Product </th>
+                                    <th>Description </th>
+                                    <th class="text-right">Quantity</th>
+                                    <th>Unit of Measure</th>
+                                </tr>
+                                <t t-foreach="doc.consumed_material_ids" t-as="consumed">
+                                    <tr>
+                                        <td><span t-field="consumed.product_id.name"/></td>
+                                        <td><span t-field="consumed.description"/></td>
+                                        <td class="text-right"><span t-field="consumed.product_uom_qty"/></td>
+                                        <td><span t-field="consumed.product_uom.name"/></td>
+                                    </tr>
+                                </t>
+                             </table>
+                         </t>
+
+
+
+<!--
+                         <t t-if="doc.picking_ids">
+                             <h3>Material Requistions</h3>
+                             <table class="table table-responsive" name="table_6">
+                                <tr>
+                                    <th>Reference </th>
+                                    <th>Destination Location Zone </th>
+                                    <th>Partner</th>
+                                    <th>Scheduled Date</th>
+                                    <th>Source Document</th>
+                                    <th>Back Order of</th>
+                                    <th>Status</th>
+                                </tr>
+                                <t t-foreach="doc.picking_ids" t-as="picking">
+                                    <tr>
+                                        <td><span t-field="picking.name"/></td>
+                                        <td><span t-field="picking.location_id.name"/></td>
+                                        <td><span t-field="picking.partner_id.name"/></td>
+                                        <td><span t-field="picking.min_date"/></td>
+                                        <td><span t-field="picking.origin"/></td>
+                                        <td><span t-field="picking.backorder_id.name"/></td>
+                                        <td><span t-field="picking.state"/></td>
+                                    </tr>
+                                </t>
+                             </table>
+                         </t>
+
+                         <t t-if="doc.move_ids">
+                             <h3>Stocks</h3>
+                             <table class="table table-responsive" name="table_7">
+                                <tr>
+                                    <th>Expected Date</th>
+                                    <th>Date</th>
+                                    <th>Source Document</th>
+                                    <th>Product</th>
+                                    <th class="text-right">Quantity</th>
+                                    <th>Unit of Measure</th>
+                                    <th>Status</th>
+                                </tr>
+                                <t t-foreach="doc.move_ids" t-as="move">
+                                    <tr>
+                                        <td><span t-field="move.date_expected"/></td>
+                                        <td><span t-field="move.create_date"/></td>
+                                        <td><span t-field="move.origin"/></td>
+                                        <td><span t-field="move.product_id.name"/></td>
+                                        <td class="text-right"><span t-field="move.product_uom_qty"/></td>
+                                        <td><span t-field="move.product_uom.name"/></td>
+                                        <td><span t-field="move.state"/></td>
+                                    </tr>
+                                </t>
+                             </table>
+                         </t>
+-->
+
+<t t-if="doc.picking_ids">
+                             <h3>Material Requistions</h3>
+                             <table class="table table-responsive" name="table_6">
+                                <tr>
+                                    <th>Reference </th>
+                                    <th>Destination Location Zone </th>
+                                    <th>Requisition Date</th>
+                                    <th>Analytic Account</th>
+                                    <th>Status</th>
+                                </tr>
+                                <t t-foreach="doc.picking_ids" t-as="picking">
+                                    <tr>
+                                        <td><span t-field="picking.name"/></td>
+                                        <td><span t-field="picking.location_id.name"/></td>
+                                        <td><span t-field="picking.request_date"/></td>
+                                        <td><span t-field="picking.analytic_account_id.name"/></td>
+                                        <td><span t-field="picking.state"/></td>
+                                    </tr>
+                                </t>
+                             </table>
+                         </t>
+                         <t t-if="doc.move_ids">
+                             <h3>Stocks</h3>
+                             <table class="table table-responsive" name="table_7">
+                                <tr>
+                                    <th>Requisition Type</th>
+                                    <th>Date</th>
+                                    <th>Product</th>
+                                    <th>Description</th>
+                                </tr>
+                                <t t-foreach="doc.move_ids" t-as="move">
+                                    <tr>
+                                        <td><span t-field="move.requisition_type"/></td>
+                                        <td><span t-field="move.create_date"/></td>
+                                        <td><span t-field="move.product_id.name"/></td>
+                                        <td><span t-field="move.description"/></td>
+                                    </tr>
+                                </t>
+                             </table>
+                         </t>
+
+                         <div class="row">
+                             <div class="col-xs-8 text-left">
+                                Signature:____________________
+                             </div>
+                         </div>
+                     </div>
+                </div>
+              </t>
+            </t>
+        </template>
+        
+    </data>
+</openerp>
